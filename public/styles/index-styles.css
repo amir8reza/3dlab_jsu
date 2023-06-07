@@ -1,0 +1,306 @@
+@font-face {
+    font-family: "shabnam";
+    src: url(../fonts/Shabnam.ttf);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "shabnam";
+    direction: rtl;
+    background-color: rgb(15, 15, 15);
+}
+
+.container {
+    width: 1200px;
+    margin: 0 auto;
+    padding: 0 10px;
+}
+
+/* بخش هدر */
+
+header {
+    height: 700px;
+    width: 100%;
+
+
+}
+
+header nav {
+    width: 100%;
+    height: 100px;
+}
+
+header nav .top {
+    float: left;
+    width: 100%;
+    height: 60px;
+    background-color: rgb(15, 15, 15);
+    border-bottom: 1px solid rgb(31, 31, 31);
+}
+
+#logo {
+    float: left;
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+    line-height: 3;
+    margin-left: 20px;
+}
+
+#profile-btn {
+    float: right;
+    width: 90px;
+    height: 35px;
+    border-radius: 8px;
+    margin-top: 12px;
+    margin-right: 20px;
+    background-color: #0652DD;
+    border: 1px solid #0652DD;
+}
+
+#profile-btn a {
+    font-family: "shabnam";
+    color: white;
+    text-decoration: none;
+}
+
+#signup-btn {
+    float: right;
+    width: 90px;
+    height: 35px;
+    margin-top: 12px;
+    background-color: rgb(15, 15, 15);
+    border: none;
+}
+
+#signup-btn a {
+    font-family: "shabnam";
+    color: white;
+    text-decoration: none;
+}
+
+header button a:hover {
+    cursor: pointer;
+    color: rgb(194, 194, 194) !important;
+}
+
+header nav .bot {
+    float: left;
+    width: 100%;
+    height: 40px;
+    background-color: black;
+}
+
+header nav ul {
+    float: right;
+    list-style: none;
+    margin-right: 25px;
+}
+
+header nav ul li {
+    float: left;
+    margin-left: 40px;
+    font-size: 12px;
+    color: #FFF;
+    margin-top: 10px
+}
+
+header nav ul li a {
+    text-decoration: none;
+    color: #fff;
+}
+
+header nav ul li :hover {
+    cursor: pointer;
+    color: rgb(194, 194, 194);
+}
+
+header .header-title {
+    width: 100%;
+    height: 600px;
+    background-image: url(../images/35045.jpg);
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.555);
+}
+
+header .background-overlay {
+    background-color: rgba(0, 0, 0, .5);
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+header .header-text {
+    text-align: center;
+    width: 90%;
+    color: #fff;
+    position: absolute;
+    margin: 280px auto;
+
+}
+
+/* بخش سکشن */
+
+section {
+    margin-top: 30px;
+    width: 100%;
+    color: white;
+    display: flex;
+}
+
+section .row {
+    float: right;
+    margin-top: 20px;
+    width: 100%;
+    height: 400px;
+    display: flex;
+}
+
+section .card {
+    width: 250px;
+    height: 350px;
+    border-radius: 8px;
+    background-color: black;
+    margin-right: 50px;
+}
+
+section .card-image {
+    width: 100%;
+    height: 72%;
+    border-radius: 8px 8px 0 0;
+}
+
+section .card-image img {
+    width: 100%;
+    border-radius: 8px 8px 0 0;
+}
+
+section .card-text {
+    width: 100%;
+    color: white;
+}
+
+section .card-text .like-icon {
+    width: 20px;
+    height: 20px;
+    float: right;
+    margin-right: 10px;
+}
+
+section .card-text .like-number {
+    float: right;
+    margin-right: 5px;
+}
+
+section .card-text .price-icon {
+    width: 20px;
+    height: 20px;
+    float: right;
+    margin-right: 5px;
+}
+
+section .card-text .price-number {
+    float: right;
+    margin-right: 5px;
+}
+
+section .card-text p {
+    float: right;
+    width: 100%;
+    margin-right: 10px;
+    margin-top: 10px;
+    margin-bottom: 40px;
+}
+
+section .order-card {
+    width: 220px;
+    height: 320px;
+    border-radius: 8px;
+    background-color: #18181C;
+    margin-right: 50px;
+    padding: 15px;
+}
+
+section .order-card .order-status {
+    float: left;
+}
+
+section .order-card .order-submit-date {
+    float: right;
+}
+
+section .order-card .order-title {
+    width: 220px;
+    margin-top: 70px;
+}
+
+section .order-card .order-desc {
+    width: 220px;
+    margin-top: 20px;
+}
+
+section .order-card .price-icon {
+    width: 20px;
+    height: 20px;
+    float: right;
+    margin-top: 110px;
+    margin-right: 5px;
+}
+
+section .order-card .price-number {
+    float: right;
+    margin-top: 110px;
+    margin-right: 5px;
+}
+
+section .order-card .order-link {
+    float: left;
+    margin-top: 110px;
+    margin-right: 5px;
+    text-decoration: none;
+    color: white;
+}
+
+section .order-card .order-link:hover {
+    color: rgb(184, 184, 184);
+}
+
+
+footer {
+    margin-top: 100px;
+    width: 100%;
+    height: 200px;
+    background-color: black;
+    display: flex;
+}
+
+footer ul {
+    width: 300px;
+    margin: 90px auto;
+    list-style: none;
+}
+
+footer ul li {
+    float: right;
+    margin-right: 40px;
+    text-align: center;
+}
+
+footer ul li a:hover {
+    cursor: pointer;
+    color: rgb(194, 194, 194) !important;
+}
+
+footer ul li a {
+    font-family: "shabnam";
+    text-decoration: none;
+    color: white;
+}

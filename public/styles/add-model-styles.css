@@ -1,0 +1,68 @@
+section{
+    margin-bottom:20px !important;
+}
+
+.add-model-form {
+    width: 500px;
+    height: 600px;
+    margin-top: 20px;
+    float: right;
+}
+
+
+.add-model-form input {
+    width: 80%;
+    height: 30px;
+    border-radius: 5px;
+    border: 1px solid rgb(230, 230, 230);
+    background-color: rgb(230, 230, 230);
+    margin-bottom: 10px;
+    padding: 10px;
+    font-family: "shabnam";
+    margin-right: 15px;
+    color: black;
+}
+
+.add-model-form select {
+    width: 80%;
+    height: 50px;
+    border-radius: 5px;
+    border: 1px solid rgb(230, 230, 230);
+    background-color: rgb(230, 230, 230);
+    margin-bottom: 10px;
+    padding: 10px;
+    font-family: "shabnam";
+    margin-right: 15px;
+    color: black;
+}
+
+.add-model-form label {
+    margin-right: 15px;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.add-model-form textarea {
+    padding: 10px;
+    border-radius: 5px;
+    font-family: "shabnam";
+    resize: none;
+}
+
+.add-model-form button {
+    width: 260px;
+    height: 50px;
+    border-radius: 5px;
+    border: 1px solid black;
+    background-color: black;
+    margin-right: 15px;
+    margin-top: 10px;
+    color: white;
+    font-family: "shabnam";
+    font-size: 17px;
+}
+
+.add-model-form button:hover {
+    cursor: pointer;
+    color: rgb(194, 194, 194) !important;
+}
