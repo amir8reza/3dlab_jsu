@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="fa">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Home </title>
+</head>
+<link rel="stylesheet" href="styles/index-styles.css">
+
+<body>
+
+    <header>
+        <nav>
+            <div class="top">
+                @auth
+                <button id="profile-btn"> <a href="profile"> پنل کاربری </a></button>
+                    <form method="post" action="/logout"> @csrf
+                        <button type="submit" id="signup-btn"> <a> خارج شدن </a> </button>
+                    </form>
+
+                @endauth
+                    @guest
+                        <button id="profile-btn"> <a href="login"> پنل کاربری </a></button>
+                        <button id="signup-btn"> <a href="register"> عضویت  </a> </button>
+                    @endguest
+
+                <a href="#" id="logo"> 3DLAB </a>
+            </div>
+            <div class="bot">
+                <ul>
+                    <li><a href="">درباره ما</a></li>
+                    <li><a href=""> سفارش </a></li>
+                    <li><a href=""> دسته بندی </a></li>
+                </ul>
+            </div>
+        </nav>
+        <div class="header-title">
+            <div class="background-overlay">
+                <div class="container">
+                    <div class="header-text">
+                        <h1> 3DLAB </h1>
+                        <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است،
+                            چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section>
+        <div class="container">
+                <h1> امیررضا حدادزاده </h1>
+        </div>
+    </section>
+
+    <footer>
+        <ul>
+            <li><a href="#"> درباره </a></li>
+            <li><a href="#"> حمایت </a></li>
+            <li><a href="#"> تماس با ما </a></li>
+        </ul>
+
+    </footer>
+
+</body>
+
+</html>

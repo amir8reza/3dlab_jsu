@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fa">
 
 <head>
     <meta charset="UTF-8">
@@ -15,7 +15,7 @@
         <nav>
             <div class="top">
                 @auth
-                <button id="profile-btn"> <a href="profile"> پنل کاربری </a></button>
+                <button id="profile-btn"> <a href="/profile"> پنل کاربری </a></button>
                     <form method="post" action="/logout"> @csrf
                         <button type="submit" id="signup-btn"> <a> خارج شدن </a> </button>
                     </form>
@@ -30,7 +30,7 @@
             </div>
             <div class="bot">
                 <ul>
-                    <li><a href="">درباره ما</a></li>
+                    <li><a href="/about-us">درباره ما</a></li>
                     <li><a href=""> سفارش </a></li>
                     <li><a href=""> دسته بندی </a></li>
                 </ul>
@@ -72,62 +72,6 @@
                 @else
                     مدلی در دیتابیس نیست
                 @endisset
-
-            </div>
-
-            <h1> محبوب ترین ها </h1>
-            <div class="row">
-                <div class="card">
-                    <div class="card-image">
-                        <a href="#"> <img src="images/card-image/Lowpoly1.png"> </a>
-                    </div>
-                    <div class="card-text">
-                        <p> لورم ایپسوم </p>
-                        <img class="like-icon" src="images/icons/heart.png" alt="like-icon.png">
-                        <span class="like-number"> 5 </span>
-                        <img class="price-icon" src="images/icons/coin.png" alt="price-icon.png">
-                        <span class="price-number"> 350 </span>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="card-image">
-                        <a href="#"> <img src="images/card-image/katana2.png"> </a>
-                    </div>
-                    <div class="card-text">
-                        <p> لورم ایپسوم </p>
-                        <img class="like-icon" src="images/icons/heart.png" alt="like-icon.png">
-                        <span class="like-number"> 5 </span>
-                        <img class="price-icon" src="images/icons/coin.png" alt="price-icon.png">
-                        <span class="price-number"> 350 </span>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="card-image">
-                        <a href="#"> <img src="images/card-image/car1.png"> </a>
-                    </div>
-                    <div class="card-text">
-                        <p> لورم ایپسوم </p>
-                        <img class="like-icon" src="images/icons/heart.png" alt="like-icon.png">
-                        <span class="like-number"> 5 </span>
-                        <img class="price-icon" src="images/icons/coin.png" alt="price-icon.png">
-                        <span class="price-number"> 350 </span>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="card-image">
-                        <a href="#"> <img src="images/card-image/Sci-fi Gun2.png"> </a>
-                    </div>
-                    <div class="card-text">
-                        <p> لورم ایپسوم </p>
-                        <img class="like-icon" src="images/icons/heart.png" alt="like-icon.png">
-                        <span class="like-number"> 5 </span>
-                        <img class="price-icon" src="images/icons/coin.png" alt="price-icon.png">
-                        <span class="price-number"> 350 </span>
-                    </div>
-                </div>
 
             </div>
 

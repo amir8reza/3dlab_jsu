@@ -15,13 +15,22 @@
     <header>
         <nav>
             <div class="top">
-                <button id="profile-btn"> <a href="sign_in.html"> پنل کاربری </a></button>
-                <button id="signup-btn"> <a href="sign_up.html"> عضویت </a> </button>
-                <a href="#" id="logo"> 3DLAB </a>
+                @auth
+                    <button id="profile-btn"> <a href="/profile"> پنل کاربری </a></button>
+                    <form method="post" action="/logout"> @csrf
+                        <button type="submit" id="signup-btn"> <a> خارج شدن </a> </button>
+                    </form>
+
+                @endauth
+                @guest
+                    <button id="profile-btn"> <a href="login"> پنل کاربری </a></button>
+                    <button id="signup-btn"> <a href="register"> عضویت  </a> </button>
+                @endguest
+                    <a href="/index" id="logo"> 3DLAB </a>
             </div>
             <div class="bot">
                 <ul>
-                    <li><a href="">درباره ما</a></li>
+                    <li><a href="/about-us">درباره ما</a></li>
                     <li><a href=""> سفارش </a></li>
                     <li><a href=""> دسته بندی </a></li>
                 </ul>
@@ -41,6 +50,7 @@
                     <img class="price-icon" src="../images/icons/coin.png" alt="price-icon.png"> <br>
 
                     <button class="model-buy"> <a href="#"> خرید </a> </button>
+                    <button class="model-buy"> <a href="/chat/{{$user['id']}}"> پیام به {{$user['username']}} </a> </button>
 
                     <div class="reviews">
                         <h3 id="comment-title"> نظرات </h3>

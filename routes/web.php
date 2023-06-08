@@ -26,6 +26,13 @@ Route::get('/index', function () {
     ]);
 });
 
+Route::get('/chat/{id}', [UserProfileController::class, 'chat_view'])->middleware("auth");
+Route::post('/chat/{id}', [UserProfileController::class, 'send_message']);
+
+Route::get('/about-us', function (){
+    return view('about_us');
+});
+
 Route::get('/models/{slug}', [ModelController::class, 'model_detail_view']);
 Route::post('/models/{slug}', [ModelController::class, 'add_comment_to_model'])->middleware('auth');
 

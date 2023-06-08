@@ -14,19 +14,20 @@
     <header>
         <nav>
             <div class="top">
-                <button id="profile-btn"> <a href="sign_in.html"> پنل کاربری </a></button>
-                <button id="signup-btn"> <a href="sign_up.html"> عضویت </a> </button>
+                <button id="profile-btn"> <a href="/profile"> پنل کاربری </a></button>
+                <form method="post" action="/logout"> @csrf
+                    <button type="submit" id="signup-btn"> <a> خارج شدن </a> </button>
+                </form>
                 <img class="price-icon" src="images/icons/coin.png" alt="price-icon.png">
                 <span class="price-number"> {{ $user['wallet'] }} </span>
-                <span></span>
-                <a href="#" id="logo"> 3DLAB </a>
+                <a href="/index" id="logo"> 3DLAB </a>
             </div>
             <div class="bot">
                 <ul>
-                    <li><a href="">درباره ما</a></li>
+                    <li><a href="/about-us">درباره ما</a></li>
                     <li><a href=""> سفارش </a></li>
                     <li><a href=""> دسته بندی </a></li>
-                    <li><a href="profile/edit"> ویرایش پروفایل </a></li>
+                    <li><a href="/profile/edit"> ویرایش پروفایل </a></li>
                     <li><a href=""> افزایش اعتبار </a></li>
                 </ul>
             </div>
@@ -59,7 +60,7 @@
             @foreach($models as $model)
                     <div class="card">
                         <div class="card-image">
-                            <a href="models/{{$model['slug']}}"> <img src="images/card-image/Sci-fi Gun2.png"> </a>
+                            <a href="models/{{$model['slug']}}"> <img src="{{asset('storage/'.$model['image']->image)}}"> </a>
                         </div>
                         <div class="card-text">
                             <p> {{$model['title']}}  </p>
