@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BuyModelController;
 use App\Http\Controllers\ModelController;
 use App\Models\Model3d;
 use Illuminate\Support\Facades\Auth;
@@ -52,3 +53,8 @@ Route::put('profile/edit', [UserProfileController::class, 'profile_update'])->mi
 Route::get('profile/upload', [ModelController::class, 'upload_model_view'])->middleware('auth')->name('newModel');
 Route::post('profile/upload', [ModelController::class, 'upload_model_form'])->name('newModelForm');
 
+//buy routes
+Route::get('profile/cart', [BuyModelController::class, 'cart_view'])->name('userCart')->middleware('auth');
+Route::post('profile/cart', [BuyModelController::class, 'buy_all_cart'])->name('buyCart')->middleware('auth');
+Route::get('models/buy/add/{id}', [BuyModelController::class, 'add_to_cart'])->middleware('auth');
+Route::delete('models/buy/delete/{id}', [BuyModelController::class, 'delete_from_cart']);

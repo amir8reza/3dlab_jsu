@@ -75,54 +75,6 @@
 
             </div>
 
-            <h1>جدیدترین سفارشات </h1>
-
-            <div class="row">
-                <div class="order-card">
-                    <span class="order-status"> موجود </span>
-                    <span class="order-submit-date"> 3 روز پیش </span>
-                    <h3 class="order-title"> ساخت کاراکتر سه بعدی </h3>
-                    <p class="order-desc"> لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از
-                    </p>
-                    <img class="price-icon" src="images/icons/coin.png" alt="price-icon.png">
-                    <span class="price-number"> 350 </span>
-                    <a href="#" class="order-link"> مشاهده </a>
-                </div>
-
-                <div class="order-card">
-                    <span class="order-status"> موجود </span>
-                    <span class="order-submit-date"> 3 روز پیش </span>
-                    <h3 class="order-title"> ساخت کاراکتر سه بعدی </h3>
-                    <p class="order-desc"> لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از
-                    </p>
-                    <img class="price-icon" src="images/icons/coin.png" alt="price-icon.png">
-                    <span class="price-number"> 350 </span>
-                    <a href="#" class="order-link"> مشاهده </a>
-                </div>
-
-                <div class="order-card">
-                    <span class="order-status"> موجود </span>
-                    <span class="order-submit-date"> 3 روز پیش </span>
-                    <h3 class="order-title"> ساخت کاراکتر سه بعدی </h3>
-                    <p class="order-desc"> لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از
-                    </p>
-                    <img class="price-icon" src="images/icons/coin.png" alt="price-icon.png">
-                    <span class="price-number"> 350 </span>
-                    <a href="#" class="order-link"> مشاهده </a>
-                </div>
-
-                <div class="order-card">
-                    <span class="order-status"> موجود </span>
-                    <span class="order-submit-date"> 3 روز پیش </span>
-                    <h3 class="order-title"> ساخت کاراکتر سه بعدی </h3>
-                    <p class="order-desc"> لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از
-                    </p>
-                    <img class="price-icon" src="images/icons/coin.png" alt="price-icon.png">
-                    <span class="price-number"> 350 </span>
-                    <a href="#" class="order-link"> مشاهده </a>
-                </div>
-
-            </div>
         </div>
     </section>
 

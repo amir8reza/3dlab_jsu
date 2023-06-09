@@ -42,15 +42,17 @@ class UserProfileController extends Controller
             $validated = $request->validate([
                 'username' => 'max:255|string|unique:users,username,'.$user->id,
                 'phone_number' => 'min:11|numeric|unique:users,phone_number,'.$user->id,
-                'email' => 'email|max:255|unique:users,email,'.$user->id
+                'email' => 'email|max:255|unique:users,email,'.$user->id,
+                'user-description' => 'string'
             ]);
 
 
 
             $user->update([
-                'username' => $request['username'],
-                'email' => $request['email'],
-                'phone_number' => $request['phone_number']
+                'username' => $validated['username'],
+                'email' => $validated['email'],
+                'phone_number' => $validated['phone_number'],
+                'user_description' => $validated['user-description']
             ]);
 
             return back();

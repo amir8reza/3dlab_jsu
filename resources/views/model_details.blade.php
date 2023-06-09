@@ -9,6 +9,9 @@
 </head>
 <link rel="stylesheet" href="../styles/index-styles.css">
 <link rel="stylesheet" href="../styles/model-details-styles.css">
+<link rel="stylesheet" href="../styles/fontawsome.min.css">
+<link rel="stylesheet" href="../styles/all.min.css">
+
 
 <body>
 
@@ -48,9 +51,8 @@
                     <span id="model-date"> آخرین تغییر : {{ $model->updated_at  }}</span> <br>
                     <span id="model-price"> قیمت : {{ $model->price  }}</span>
                     <img class="price-icon" src="../images/icons/coin.png" alt="price-icon.png"> <br>
-
-                    <button class="model-buy"> <a href="#"> خرید </a> </button>
-                    <button class="model-buy"> <a href="/chat/{{$user['id']}}"> پیام به {{$user['username']}} </a> </button>
+                    <button class="model-buy"> <i class="fa fa-solid fa-shopping-cart"></i> <a href="/models/buy/add/{{$model->id}}"> افزودن به سبد </a> </button>
+                    <button class="model-chat"> <i class="fa fa-solid fa-message"></i> <a href="/chat/{{$user['id']}}"> پیام به {{$user['username']}} </a> </button>
 
                     <div class="reviews">
                         <h3 id="comment-title"> نظرات </h3>
@@ -77,7 +79,7 @@
                         <form class="user-comment" action="/models/{{$model->slug}}" method="post"> @csrf
                             <textarea name="user-comment-text" id="user-comment-text" cols="20" rows="2"></textarea>
 
-                            <button id="comment-submit" type="submit"> ثبت نظر </button>
+                            <button id="comment-submit" type="submit"><i class="fa fa-solid fa-comment"></i> ثبت نظر  </button>
                             <select name="rate" id="rate">
                                 <option value="0"> 0 </option>
                                 <option value="1"> 1 </option>

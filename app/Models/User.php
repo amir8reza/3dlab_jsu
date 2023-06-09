@@ -23,6 +23,7 @@ class User extends Authenticatable
         'email',
         'password',
         'phone_number',
+        'user_description',
         'role',
         'wallet'
     ];
@@ -50,5 +51,9 @@ class User extends Authenticatable
     public function model3ds()
     {
         return $this->hasMany(Model3d::class, 'creator_id');
+    }
+    public function sales()
+    {
+        return $this->hasMany(Sale::class);
     }
 }

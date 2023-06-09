@@ -9,6 +9,8 @@
 </head>
 <link rel="stylesheet" href="../styles/index-styles.css">
 <link rel="stylesheet" href="../styles/chat-styles.css">
+<link rel="stylesheet" href="../styles/fontawsome.min.css">
+<link rel="stylesheet" href="../styles/all.min.css">
 
 <body>
 
@@ -70,7 +72,7 @@
                 </div>
                 <div class="new-chat">
                     <form action="/chat/{{$to_user['id']}}" method="post"> @csrf
-                        <button type="confirm"> ارسال </button>
+                        <button type="confirm"><i class="fa fa-send fa-2x"></i> </button>
                         <textarea name="new_text" id="chat-textarea" row="1"></textarea>
                     </form>
                 </div>

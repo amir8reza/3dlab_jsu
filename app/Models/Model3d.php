@@ -25,4 +25,9 @@ class Model3d extends Model
     public function images(){
         return $this->hasMany(Image::class);
     }
+
+    public function sales()
+    {
+        return $this->belongsToMany(Sale::class);
+    }
 }

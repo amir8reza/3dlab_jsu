@@ -45,7 +45,7 @@
                         @endisset
                     </p>
                     <button id="add-model-btn"> <a href="{{ route('newModel') }}"> آپلود مدل </a></button>
-                    <button id="add-order-btn"> <a href="add-order.html"> سفارش جدید </a></button>
+                    <button id="add-order-btn"> <a href="{{ route('userCart')  }}"> سبد خرید  </a></button>
 
                 </div>
             </div>

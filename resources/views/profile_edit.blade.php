@@ -60,9 +60,7 @@
                <!-- <label for="avatar"> عکس پروفایل </label> -->
                 <!-- <input type="file" name="avatar" accept="image/jpeg, image/png"> <br /> -->
                 <label  for="profile-desc"> توضیحات </label>
-                <textarea name="user-description" id="profile-desc" cols="80" rows="10">
-                    {{auth()->user()->user_description}}
-                </textarea>
+                <textarea name="user-description" id="profile-desc" cols="80" rows="10">{{auth()->user()->user_description}}</textarea>
                 <button type="submit" name="information_change" > ذخیره تغییرات </button>
 
                 @if($errors->any())

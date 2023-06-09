@@ -163,7 +163,10 @@ section .container {
     font-family: "shabnam";
     margin-right: 30px;
     border: none;
+}
 
+.new-chat form button:hover {
+    cursor: pointer;
 }
 
 /* Scrollbar  */
