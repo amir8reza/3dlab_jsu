@@ -57,9 +57,9 @@
 
     <footer>
         <ul>
-            <li><a href="#"> درباره </a></li>
-            <li><a href="#"> حمایت </a></li>
-            <li><a href="#"> تماس با ما </a></li>
+            <li><a href="{{route('aboutUs')}}">درباره ما</a></li>
+            <li><a href=""> دسته بندی </a></li>
+            <li><a href="{{route('index')}}"> خانه </a></li>
         </ul>
 
     </footer>

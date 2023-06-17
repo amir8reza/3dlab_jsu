@@ -15,9 +15,19 @@
     <header>
         <nav>
             <div class="top">
-                <button id="profile-btn"> <a href="sign_in.html"> پنل کاربری </a></button>
-                <button id="signup-btn"> <a href="sign_up.html"> عضویت </a> </button>
-                <a href="#" id="logo"> 3DLAB </a>
+                @auth
+                    <button id="profile-btn"> <a href="/profile"> پنل کاربری </a></button>
+                    <form method="post" action="/logout"> @csrf
+                        <button type="submit" id="signup-btn"> <a> خارج شدن </a> </button>
+                    </form>
+
+                @endauth
+                @guest
+                    <button id="profile-btn"> <a href="/login"> پنل کاربری </a></button>
+                    <button id="signup-btn"> <a href="/register"> عضویت  </a> </button>
+                @endguest
+
+                <a href="{{route('index')}}" id="logo"> 3DLAB </a>
             </div>
             <div class="bot">
                 <ul>
@@ -37,7 +47,7 @@
 
                     @foreach($sales as $sale)
                         <div class="row">
-                            <p> نام مدل : {{$sale->model3ds[0]->title }}
+                            <p> نام مدل : {{$sale->model3ds->title}}
                                 <br> قیمت : {{$sale->price}}
                                 <br> تاریخ ثبت : {{$sale->created_at}}
                             </p>

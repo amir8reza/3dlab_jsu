@@ -25,11 +25,11 @@
             </div>
             <div class="bot">
                 <ul>
-                    <li><a href="/about-us">درباره ما</a></li>
-                    <li><a href=""> سفارش </a></li>
+                    <li><a href="{{route('aboutUs')}}">درباره ما</a></li>
                     <li><a href=""> دسته بندی </a></li>
-                    <li><a href="#"> ویرایش پروفایل </a></li>
+                    <li><a href="{{route('profilePanel')}}">  پروفایل </a></li>
                     <li><a href=""> افزایش اعتبار </a></li>
+                    <li><a href="{{route('index')}}"> خانه </a></li>
                 </ul>
             </div>
         </nav>
@@ -45,6 +45,9 @@
                             توضیحاتی وارد نشده است
                         @endisset
                     </p>
+                    <button id="add-model-btn"> <a href="{{ route('newModel') }}"> آپلود مدل </a></button>
+                    <button id="add-order-btn"> <a href="{{ route('userCart')  }}"> سبد خرید  </a></button>
+
                 </div>
             </div>
         </div>
@@ -70,6 +73,7 @@
                         @endforeach
                     </ul>
                 @endif
+
 
             </form>
 

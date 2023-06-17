@@ -53,7 +53,7 @@ class LoginController extends Controller
 
     protected function loggedOut(\Illuminate\Http\Request $request)
     {
-        return redirect('index');
+        return redirect(route('index'));
     }
 
 }

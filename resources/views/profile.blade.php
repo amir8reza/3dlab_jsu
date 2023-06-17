@@ -15,7 +15,7 @@
         <nav>
             <div class="top">
                 <button id="profile-btn"> <a href="/profile"> پنل کاربری </a></button>
-                <form method="post" action="/logout"> @csrf
+                <form method="post" action="{{ route('logout')  }}"> @csrf
                     <button type="submit" id="signup-btn"> <a> خارج شدن </a> </button>
                 </form>
                 <img class="price-icon" src="images/icons/coin.png" alt="price-icon.png">
@@ -24,11 +24,11 @@
             </div>
             <div class="bot">
                 <ul>
-                    <li><a href="/about-us">درباره ما</a></li>
-                    <li><a href=""> سفارش </a></li>
+                    <li><a href="{{route('aboutUs')}}">درباره ما</a></li>
                     <li><a href=""> دسته بندی </a></li>
                     <li><a href="/profile/edit"> ویرایش پروفایل </a></li>
-                    <li><a href=""> افزایش اعتبار </a></li>
+                    <li><a href="{{route('buyCoin')}}"> افزایش اعتبار </a></li>
+                    <li><a href="{{route('index')}}"> خانه </a></li>
                 </ul>
             </div>
         </nav>
@@ -46,6 +46,7 @@
                     </p>
                     <button id="add-model-btn"> <a href="{{ route('newModel') }}"> آپلود مدل </a></button>
                     <button id="add-order-btn"> <a href="{{ route('userCart')  }}"> سبد خرید  </a></button>
+                    <button id="add-order-btn"> <a href="{{ route('conversations')  }}"> پیام ها  </a></button>
 
                 </div>
             </div>
@@ -60,7 +61,7 @@
             @foreach($models as $model)
                     <div class="card">
                         <div class="card-image">
-                            <a href="models/{{$model['slug']}}"> <img src="{{asset('storage/'.$model['image']->image)}}"> </a>
+                            <a href="models/{{$model['slug']}}"> <img src="{{asset('storage/'.$model->images['image'])}}"> </a>
                         </div>
                         <div class="card-text">
                             <p> {{$model['title']}}  </p>
@@ -78,52 +79,24 @@
 
 
 
-            <h1> سفارشات </h1>
+            <h1> خرید ها </h1>
 
             <div class="row">
-                <div class="order-card">
-                    <span class="order-status"> موجود </span>
-                    <span class="order-submit-date"> 3 روز پیش </span>
-                    <h3 class="order-title"> ساخت کاراکتر سه بعدی </h3>
-                    <p class="order-desc"> لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از
-                    </p>
-                    <img class="price-icon" src="images/icons/coin.png" alt="price-icon.png">
-                    <span class="price-number"> 350 </span>
-                    <a href="#" class="order-link"> مشاهده </a>
-                </div>
-
-                <div class="order-card">
-                    <span class="order-status"> موجود </span>
-                    <span class="order-submit-date"> 3 روز پیش </span>
-                    <h3 class="order-title"> ساخت کاراکتر سه بعدی </h3>
-                    <p class="order-desc"> لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از
-                    </p>
-                    <img class="price-icon" src="images/icons/coin.png" alt="price-icon.png">
-                    <span class="price-number"> 350 </span>
-                    <a href="#" class="order-link"> مشاهده </a>
-                </div>
-
-                <div class="order-card">
-                    <span class="order-status"> موجود </span>
-                    <span class="order-submit-date"> 3 روز پیش </span>
-                    <h3 class="order-title"> ساخت کاراکتر سه بعدی </h3>
-                    <p class="order-desc"> لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از
-                    </p>
-                    <img class="price-icon" src="images/icons/coin.png" alt="price-icon.png">
-                    <span class="price-number"> 350 </span>
-                    <a href="#" class="order-link"> مشاهده </a>
-                </div>
-
-                <div class="order-card">
-                    <span class="order-status"> موجود </span>
-                    <span class="order-submit-date"> 3 روز پیش </span>
-                    <h3 class="order-title"> ساخت کاراکتر سه بعدی </h3>
-                    <p class="order-desc"> لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از
-                    </p>
-                    <img class="price-icon" src="images/icons/coin.png" alt="price-icon.png">
-                    <span class="price-number"> 350 </span>
-                    <a href="#" class="order-link"> مشاهده </a>
-                </div>
+                @foreach($sales as $sale)
+                    <div class="card">
+                        <div class="card-image">
+                            <a href="models/{{$sale->model3ds->slug}}"> <img src="{{asset('storage/'.$sale->model3ds->images->image)}}"> </a>
+                        </div>
+                        <div class="card-text">
+                            <p> {{$sale->model3ds->title}}  </p>
+                            <img class="like-icon" src="images/icons/heart.png" alt="like-icon.png">
+                            <span class="like-number"> 5 </span>
+                            <img class="price-icon" src="images/icons/coin.png" alt="price-icon.png">
+                            <span class="price-number"> {{ $sale->price  }} </span>
+                            <a href="models/{{$sale->model3ds->slug}}" class="card-link"> مشاهده </a>
+                        </div>
+                    </div>
+                @endforeach
 
             </div>
         </div>

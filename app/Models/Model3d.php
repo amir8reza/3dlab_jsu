@@ -23,11 +23,10 @@ class Model3d extends Model
     }
 
     public function images(){
-        return $this->hasMany(Image::class);
+        return $this->hasOne(Image::class, 'model_id');
     }
-
     public function sales()
     {
-        return $this->belongsToMany(Sale::class);
+        return $this->hasMany(Sale::class, 'model3d_id');
     }
 }

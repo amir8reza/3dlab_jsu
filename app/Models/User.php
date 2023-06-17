@@ -52,6 +52,11 @@ class User extends Authenticatable
     {
         return $this->hasMany(Model3d::class, 'creator_id');
     }
+
+    public function conversations()
+    {
+        return $this->hasMany(Conversation::class, ['from_user', 'to_user']);
+    }
     public function sales()
     {
         return $this->hasMany(Sale::class);

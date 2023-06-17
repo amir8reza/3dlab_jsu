@@ -12,11 +12,11 @@ class Sale extends Model
     protected $fillable = ['user_id', 'model3d_id', 'price', 'status'];
 
     public function user(){
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function model3ds()
     {
-        return $this->belongsToMany(Model3d::class);
+        return $this->belongsTo(Model3d::class, 'model3d_id');
     }
 }

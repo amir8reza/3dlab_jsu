@@ -176,7 +176,7 @@ section .container {
 
 /* Track */
 ::-webkit-scrollbar-track {
-    background-color: rgb(15, 15, 15);
+    background: linear-gradient(to right, #141e30, #243b55);
 }
 
 /* Handle */

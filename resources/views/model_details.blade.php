@@ -26,16 +26,16 @@
 
                 @endauth
                 @guest
-                    <button id="profile-btn"> <a href="login"> پنل کاربری </a></button>
-                    <button id="signup-btn"> <a href="register"> عضویت  </a> </button>
+                    <button id="profile-btn"> <a href="/login"> پنل کاربری </a></button>
+                    <button id="signup-btn"> <a href="/register"> عضویت  </a> </button>
                 @endguest
-                    <a href="/index" id="logo"> 3DLAB </a>
+                    <a href="{{route('index')}}" id="logo"> 3DLAB </a>
             </div>
             <div class="bot">
                 <ul>
                     <li><a href="/about-us">درباره ما</a></li>
-                    <li><a href=""> سفارش </a></li>
                     <li><a href=""> دسته بندی </a></li>
+                    <li><a href="{{route('index')}}"> خانه </a></li>
                 </ul>
             </div>
         </nav>
@@ -51,9 +51,14 @@
                     <span id="model-date"> آخرین تغییر : {{ $model->updated_at  }}</span> <br>
                     <span id="model-price"> قیمت : {{ $model->price  }}</span>
                     <img class="price-icon" src="../images/icons/coin.png" alt="price-icon.png"> <br>
-                    <button class="model-buy"> <i class="fa fa-solid fa-shopping-cart"></i> <a href="/models/buy/add/{{$model->id}}"> افزودن به سبد </a> </button>
-                    <button class="model-chat"> <i class="fa fa-solid fa-message"></i> <a href="/chat/{{$user['id']}}"> پیام به {{$user['username']}} </a> </button>
+                    @if($user['id'] != \Illuminate\Support\Facades\Auth::id())
 
+                    <button class="model-buy"> <i class="fa fa-solid fa-shopping-cart"></i> <a href="/models/buy/add/{{$model->id}}"> افزودن به سبد </a> </button>
+
+                    <button class="model-chat"> <i class="fa fa-solid fa-message"></i> <a href="/chat/{{$user['id']}}"> پیام به {{$user['username']}} </a> </button>
+                    @else
+                        <button class="model-buy"> <i class="fa fa-solid fa-edit"></i> <a href="/models/edit/{{$model->id}}"> ویرایش محصول </a> </button>
+                    @endif
                     <div class="reviews">
                         <h3 id="comment-title"> نظرات </h3>
 

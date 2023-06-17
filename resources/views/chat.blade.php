@@ -17,15 +17,24 @@
     <header>
         <nav>
             <div class="top">
-                <button id="profile-btn"> <a href="sign_in.html"> پنل کاربری </a></button>
-                <button id="signup-btn"> <a href="sign_up.html"> عضویت </a> </button>
-                <a href="#" id="logo"> 3DLAB </a>
+                @auth
+                    <button id="profile-btn"> <a href="/profile"> پنل کاربری </a></button>
+                    <form method="post" action="/logout"> @csrf
+                        <button type="submit" id="signup-btn"> <a> خارج شدن </a> </button>
+                    </form>
+
+                @endauth
+                @guest
+                    <button id="profile-btn"> <a href="login"> پنل کاربری </a></button>
+                    <button id="signup-btn"> <a href="register"> عضویت  </a> </button>
+                @endguest
+                <a href="{{route('index')}}" id="logo"> 3DLAB </a>
             </div>
             <div class="bot">
                 <ul>
-                    <li><a href="">درباره ما</a></li>
-                    <li><a href=""> سفارش </a></li>
+                    <li><a href="{{route('aboutUs')}}">درباره ما</a></li>
                     <li><a href=""> دسته بندی </a></li>
+                    <li><a href="{{route('index')}}"> خانه </a></li>
                 </ul>
             </div>
         </nav>

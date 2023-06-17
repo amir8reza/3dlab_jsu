@@ -6,7 +6,9 @@ use App\Models\Category;
 use App\Models\Comment;
 use App\Models\Image;
 use App\Models\Model3d;
+use App\Models\Sale;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -17,12 +19,13 @@ class ModelController extends Controller
 {
     public function model_detail_view($slug)
     {
-        $model = DB::table('model3ds')->where('slug', $slug)->get()->first();
+        $model = Model3d::where('slug', $slug)->get()->first();
         $user = User::findOrFail($model->creator_id);
-        $image = DB::table('images')->where('model_id', $model->id)->get()->first();
+
+        $image = $model->images;
         $image_url = asset('storage/'.$image->image);
 
-        $comments = DB::table('comments')->where('model3d_id', $model->id)->get()->all();
+        $comments = Comment::where('model3d_id', $model->id)->get()->all();
 
         foreach ($comments as $comment)
         {
@@ -108,5 +111,84 @@ class ModelController extends Controller
         ]);
 
         return redirect()->back();
+    }
+
+    public function edit_model_view(Request $request)
+    {
+        $user = User::findOrFail(Auth::id());
+        $model = Model3d::findOrFail($request['id']);
+        if($model['creator_id'] != $user['id'])
+        {
+            return (404);
+        }
+
+        $categories = Category::all();
+
+        return view('edit_model',[
+            'user' => $user,
+            'categories' => $categories,
+            'model' => $model
+        ]);
+    }
+
+    public function edit_model(Request $request)
+    {
+        $model = Model3d::findOrFail($request['id']);
+
+
+
+        $validated = $request->validate([
+            'title' => 'required|unique:model3ds,title,'.$model->id,
+            'image' => 'mimes:jpeg,png,jpg,svg|max:5820',
+            'model_file' => 'max:20480',
+            'description' => 'string|required',
+            'price' => 'required|numeric|digits_between:0,100000',
+        ]);
+
+        $slug_field = Str::slug($validated['title'], '-');
+
+        $model->update([
+            'title' => $validated['title'],
+            'slug' => $slug_field,
+            'description' => $validated['description'],
+            'price' => $validated['price']
+        ]);
+
+        if($request->hasFile('model_file'))
+        {
+            $file_format = $request->file('model_file')->getClientOriginalExtension();
+            $file_name = $slug_field.'.'.$file_format;
+            $file_path = $request->file('model_file')->storeAs('models/'.$model['creator_id'],$file_name);
+
+            $model->update([
+                'file' => $file_path,
+                'file_format' => $file_format
+            ]);
+        }
+
+        if($request->hasFile('image'))
+        {
+            $image = Image::where('model_id', $model['id'])->get()->first();
+            $image_name = $slug_field.'.'.$request->file('image')->getClientOriginalExtension();
+            $request->file('image')->storeAs('public/images/'.$model['creator_id'], $image_name);
+            $image_path = '/images/'.$model['creator_id'].'/'.$image_name;
+            Storage::delete($image['image']);
+
+            $image->update([
+                'image' => $image_path
+            ]);
+        }
+
+        return redirect(route('profilePanel'));
+
+    }
+
+    public function delete_model(Request $request)
+    {
+
+       $model = Model3d::findOrFail($request['id']);
+        $model->delete();
+        return redirect(route('profilePanel'));
+
     }
 }

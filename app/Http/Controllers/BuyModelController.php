@@ -13,7 +13,8 @@ class BuyModelController extends Controller
 {
     public function cart_view(Request $request)
     {
-        $sales = Sale::with('model3ds')->where('user_id','=', Auth::id())->where('status', 'false')->get();
+        $sales = Sale::where('user_id', Auth::id())->where('status','false')->get();
+
         return view('buy_model', [
             'sales' => $sales
         ]);
@@ -29,20 +30,21 @@ class BuyModelController extends Controller
     public function add_to_cart(Request $request)
     {
         $model = Model3d::findOrFail($request['id']);
-        $sale = Sale::create([
+        $sale = Sale::firstOrCreate([
             'user_id' => Auth::id(),
             'model3d_id' => $model['id'],
             'price' => $model['price'],
             'status' => 'false'
         ]);
 
-        $sale->model3ds()->attach($model['id']);
+        //$sale->model3ds()->attach($model['id']);
+        return redirect("/models/".$model['slug']);
     }
 
     public function buy_all_cart()
     {
         $user = Auth::user();
-        $sales = Sale::where('user_id', Auth::id())->get();
+        $sales = Sale::where('user_id', Auth::id())->where('status', 'false')->get();
         $full_price = 0;
 
         foreach ($sales as $sale)
@@ -54,7 +56,7 @@ class BuyModelController extends Controller
 
         if ($new_wallet < 0 )
         {
-            return redirect('buy_coin');
+            return redirect(route('buyCoin'));
         }
 
         $user->update([
@@ -70,5 +72,27 @@ class BuyModelController extends Controller
 
         return redirect(route('userCart'))
 ;
+    }
+
+    public function buy_coin_view()
+    {
+        $user = Auth::user();
+        return view('buy_coin', ['user' => $user]);
+    }
+
+    public function buy_coin(Request $request)
+    {
+        $validated = $request->validate([
+            'amount' => 'required|numeric|min:100'
+        ]);
+
+        $user = Auth::user();
+        $new_wallet = $user['wallet'] + $validated['amount'];
+
+        $user->update([
+            'wallet' => $new_wallet
+        ]);
+
+        return redirect(route('profilePanel'));
     }
 }

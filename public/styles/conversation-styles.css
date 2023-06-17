@@ -20,34 +20,13 @@ section .model-image {
     width: 820px;
     height: 500px;
     display: flex;
-    background-color: black;
+    background-color: #0a53be;
     border-radius: 10px;
 }
 
-.model-image form{
-    width: 600px;
-    height: auto;
-    margin-right: 210px;
+section .model-image i{
+    margin:200px auto;
 }
-
-section .model-image button {
-    background-color: #0652DD;
-    width: 350px;
-    height: 50px;
-    border: 1px solid #0652DD;
-    color: white;
-    font-size: 20px;
-    border-radius: 5px;
-    font-family: "shabnam";
-    margin: 200px auto;
-    text-align: center;
-}
-
-section .model-image button:hover {
-    background-color: #497cdb;
-    cursor: pointer;
-}
-
 
 section .model-detail {
     float: right;
@@ -87,18 +66,14 @@ section .model-detail .user-detail {
     height: 100px;
     width: 100px;
     border-radius: 8px;
-    border: 1px solid rgb(202, 37, 37);
-    background: rgb(202, 37, 37);
+    border: 1px solid #ffa801;
+    background: #ffa801;
+    color: white;
     font-family: "shabnam";
 }
 
-.user-detail .row button a{
-    text-decoration: none;
-    color: white;
-}
-
 .user-detail .row button:hover {
-    background: rgb(216, 52, 52);
+    background: #eca824;
     cursor: pointer;
 }
 

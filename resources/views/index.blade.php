@@ -26,12 +26,11 @@
                         <button id="signup-btn"> <a href="register"> عضویت  </a> </button>
                     @endguest
 
-                <a href="#" id="logo"> 3DLAB </a>
+                <a href="{{route('index')}}" id="logo"> 3DLAB </a>
             </div>
             <div class="bot">
                 <ul>
                     <li><a href="/about-us">درباره ما</a></li>
-                    <li><a href=""> سفارش </a></li>
                     <li><a href=""> دسته بندی </a></li>
                 </ul>
             </div>
@@ -58,7 +57,7 @@
                     @foreach($new_models as $new_model)
                         <div class="card">
                             <div class="card-image">
-                                <a href="models/{{$new_model->slug}}"> <img src="images/card-image/Lowpoly1.png"> </a>
+                                <a href="models/{{$new_model->slug}}"> <img src="{{asset('storage/'.$new_model->images['image'])}}"> </a>
                             </div>
                             <div class="card-text">
                                 <p>  {{$new_model->title}} </p>
