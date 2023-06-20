@@ -19,7 +19,6 @@
                     <form method="post" action="/logout"> @csrf
                         <button type="submit" id="signup-btn"> <a> خارج شدن </a> </button>
                     </form>
-
                 @endauth
                     @guest
                         <button id="profile-btn"> <a href="login"> پنل کاربری </a></button>
@@ -31,7 +30,7 @@
             <div class="bot">
                 <ul>
                     <li><a href="/about-us">درباره ما</a></li>
-                    <li><a href=""> دسته بندی </a></li>
+                    <li><a href="/categories"> دسته بندی </a></li>
                 </ul>
             </div>
         </nav>

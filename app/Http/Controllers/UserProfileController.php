@@ -11,6 +11,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use function PHPUnit\Framework\isNull;
 
 class UserProfileController extends Controller
@@ -46,8 +47,6 @@ class UserProfileController extends Controller
                 'user-description' => 'string'
             ]);
 
-
-
             $user->update([
                 'username' => $validated['username'],
                 'email' => $validated['email'],
@@ -59,9 +58,20 @@ class UserProfileController extends Controller
         }
         elseif ($request->has('password_change'))
         {
-            dd('pass');
+            $user =Auth::user();
+            $validated = $request->validate([
+                'old_password' => 'required',
+                'new_password' => 'required|confirmed'
+            ]);
+
+            if (Hash::check($request['old_password'], $user->password))
+            {
+                $user->update([
+                    'password' => $request['new_password']
+                ]);
+            }
         }
-        return view('profile');
+        return redirect('/profile/edit');
     }
 
     public function user_conversations_view()

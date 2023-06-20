@@ -21,28 +21,36 @@ class ModelController extends Controller
     {
         $model = Model3d::where('slug', $slug)->get()->first();
         $user = User::findOrFail($model->creator_id);
-
         $image = $model->images;
         $image_url = asset('storage/'.$image->image);
-
         $comments = Comment::where('model3d_id', $model->id)->get()->all();
 
-        foreach ($comments as $comment)
-        {
-            $comment->username = User::find($comment->user_id)['username'];
+        if(Auth::check()) {
+            $owned = Auth::user()->sales()->where('model3d_id', '=', $model->id)->where('status', 'true')->get();
+            if ($owned->count()>0)
+            {
+                $owned = true;
+            }
+            else
+                $owned = false;
         }
+        else
+            $owned = false;
+
+
 
         return view('model_details', [
             'user' => $user,
             'model' => $model,
             'image_url' => $image_url,
-            'comments' => $comments
+            'comments' => $comments,
+            'owned' => $owned
         ]);
     }
 
     public function upload_model_view()
     {
-        $categories = Category::all();
+        $categories = Category::where('parent_id', '!=', null)->get();
         $user = User::findOrFail(Auth::id());
         return view('add_model',[
             'user' => $user,
@@ -122,7 +130,7 @@ class ModelController extends Controller
             return (404);
         }
 
-        $categories = Category::all();
+        $categories = Category::where('parent_id', '!=', null)->get();
 
         return view('edit_model',[
             'user' => $user,
@@ -191,4 +199,50 @@ class ModelController extends Controller
         return redirect(route('profilePanel'));
 
     }
+
+    public function download_model(Request $request)
+    {
+        $model = Model3d::where('slug', $request['slug'])->get()->first();
+
+        if ($model == null) {
+            abort(404);
+        }
+        else {
+            $owned = Auth::user()->sales()->where('model3d_id', '=', $model->id)->where('status', 'true')->get()->first();
+            if ($owned == null)
+                abort(404);
+            else
+                return Storage::download($model->file);
+        }
+
+    }
+
+    public function categories_view()
+    {
+        return view('categories');
+    }
+    public function sub_category_view(Request $request)
+    {
+        if ($request['sub_id'])
+        {
+            $sub_category = Category::where('id', $request['sub_id'])->where('parent_id', '!=', null)->get()->first();
+            return view('sub_categories', [
+                'sub_category' => $sub_category,
+            ]);
+        }
+        else {
+            $main_category = Category::find($request['id']);
+            return view('sub_categories', [
+                'main_category' => $main_category,
+            ]);
+        }
+    }
+
+    public function search(Request $request)
+    {
+        $models = Model3d::where('title', 'like', '%'.$request['search_bar_text'].'%')->get();
+
+        return view('categories', ['models' => $models]);
+    }
+
 }

@@ -52,10 +52,12 @@
                     <span id="model-price"> قیمت : {{ $model->price  }}</span>
                     <img class="price-icon" src="../images/icons/coin.png" alt="price-icon.png"> <br>
                     @if($user['id'] != \Illuminate\Support\Facades\Auth::id())
-
-                    <button class="model-buy"> <i class="fa fa-solid fa-shopping-cart"></i> <a href="/models/buy/add/{{$model->id}}"> افزودن به سبد </a> </button>
-
-                    <button class="model-chat"> <i class="fa fa-solid fa-message"></i> <a href="/chat/{{$user['id']}}"> پیام به {{$user['username']}} </a> </button>
+                        @if($owned)
+                            <button class="model-buy"> <i class="fa fa-solid fa-download"></i> <a href="/models/download/{{$model->slug}}"> دانلود فایل   </a> </button>
+                        @else
+                            <button class="model-buy"> <i class="fa fa-solid fa-shopping-cart"></i> <a href="/models/buy/add/{{$model->id}}"> افزودن به سبد </a> </button>
+                        @endif
+                        <button class="model-chat"> <i class="fa fa-solid fa-message"></i> <a href="/chat/{{$user['id']}}"> پیام به {{$user['username']}} </a> </button>
                     @else
                         <button class="model-buy"> <i class="fa fa-solid fa-edit"></i> <a href="/models/edit/{{$model->id}}"> ویرایش محصول </a> </button>
                     @endif
@@ -66,7 +68,7 @@
                             @foreach($comments as $comment)
                             <div class="comment">
                                 <img class="comment-img" src="../images/profile-pics/profile1.png" alt="aa.png">
-                                <h4 class="comment-name"> {{ $comment->username }} </h4>
+                                <h4 class="comment-name"> {{ $comment->user->username }} </h4>
                                 <p class="comment-text">
                                     {{$comment->comment_text}}
                                 </p>

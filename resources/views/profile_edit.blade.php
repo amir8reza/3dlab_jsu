@@ -78,9 +78,9 @@
             </form>
 
             <form action="/profile/edit" class="password-form" method="post"> @csrf @method('put')
-                <input type="password" placeholder="کلمه عبور فعلی" required>
-                <input type="password" placeholder="کلمه عبور جدید" required>
-                <input type="password" placeholder="تکرار کلمه عبور جدید" required>
+                <input name="old_password" type="password" placeholder="کلمه عبور فعلی" required>
+                <input name="new_password" type="password" placeholder="کلمه عبور جدید" required>
+                <input name="new_password_confirmation" type="password" placeholder="تکرار کلمه عبور جدید" required>
                 <button type="submit" name="password_change"> تغییر کلمه عبور </button>
 
             </form>

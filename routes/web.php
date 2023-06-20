@@ -2,11 +2,9 @@
 
 use App\Http\Controllers\BuyModelController;
 use App\Http\Controllers\ModelController;
-use App\Models\Image;
 use App\Models\Model3d;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Models\User;
 use App\Http\Controllers\UserProfileController;
 /*
 |--------------------------------------------------------------------------
@@ -20,7 +18,6 @@ use App\Http\Controllers\UserProfileController;
 */
 
 //main routes
-
 Route::get('/index', function () {
     $new_models = Model3d::latest()->take(4)->get();
     return view('index', [
@@ -33,11 +30,14 @@ Route::get('/chat/{id}', [UserProfileController::class, 'chat_view'])->middlewar
 Route::post('/chat/{id}', [UserProfileController::class, 'send_message']);
 
 
-
+//about and categories
 Route::get('/about-us', function (){
     return view('about_us');
 })->name('aboutUs');
-
+Route::get('/categories', [ModelController::class, 'categories_view'])->name('categories');
+Route::get('/categories/{id}', [ModelController::class, 'sub_category_view']);
+Route::get('/categories/{id}/{sub_id}', [ModelController::class, 'sub_category_view']);
+Route::post('/categories', [ModelController::class, 'search'])->name('searchModel');
 
 //working with models
 Route::get('/models/{slug}', [ModelController::class, 'model_detail_view']);
@@ -45,6 +45,7 @@ Route::post('/models/{slug}', [ModelController::class, 'add_comment_to_model'])-
 Route::get('/models/edit/{id}', [ModelController::class, 'edit_model_view'])->middleware('auth');
 Route::put('/models/edit/{id}', [ModelController::class, 'edit_model'])->name('editModel')->middleware('auth');
 Route::delete('/models/delete/{id}', [ModelController::class, 'delete_model'])->middleware('auth');
+Route::get('/models/download/{slug}', [ModelController::class, 'download_model'])->middleware('auth');
 Route::get('profile/upload', [ModelController::class, 'upload_model_view'])->middleware('auth')->name('newModel');
 Route::post('profile/upload', [ModelController::class, 'upload_model_form'])->name('newModelForm');
 

@@ -8,6 +8,8 @@
     <title> Profile </title>
 </head>
 <link rel="stylesheet" href="styles/profile-styles.css">
+<link rel="stylesheet" href="../styles/fontawsome.min.css">
+<link rel="stylesheet" href="../styles/all.min.css">
 
 <body>
 
@@ -24,8 +26,9 @@
             </div>
             <div class="bot">
                 <ul>
+                    <li><a href="{{route('userCart')}}"> <i class="fa fa-solid fa-shopping-cart"></i> سبد خرید </a></li>
                     <li><a href="{{route('aboutUs')}}">درباره ما</a></li>
-                    <li><a href=""> دسته بندی </a></li>
+                    <li><a href="{{route('categories')}}"> دسته بندی </a></li>
                     <li><a href="/profile/edit"> ویرایش پروفایل </a></li>
                     <li><a href="{{route('buyCoin')}}"> افزایش اعتبار </a></li>
                     <li><a href="{{route('index')}}"> خانه </a></li>
