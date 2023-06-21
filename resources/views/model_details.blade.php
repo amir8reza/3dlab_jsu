@@ -48,6 +48,9 @@
                     <img id="avatar" src="../images/profile-pics/profile1.png" alt="avatar.png">
                     <h2 id="username"> {{ $user['username']  }}  </h2>
                     <span id="model-name"> نام مدل :  {{ $model->title  }} </span> <br>
+                    <span>
+                        <p> توضیحات : {{$model->description}} </p>
+                    </span>
                     <span id="model-date"> آخرین تغییر : {{ $model->updated_at  }}</span> <br>
                     <span id="model-price"> قیمت : {{ $model->price  }}</span>
                     <img class="price-icon" src="../images/icons/coin.png" alt="price-icon.png"> <br>

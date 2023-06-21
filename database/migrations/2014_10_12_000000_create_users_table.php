@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('role');
             $table->float('wallet');
             $table->text('user_description')->nullable();
+            $table->boolean('is_active')->default(true);
             $table->rememberToken();
             $table->timestamps();
         });

@@ -65,7 +65,7 @@
                 <label for="image"> عکس مدل </label>
                 <input type="file" name="image" accept="image/jpeg, image/png"> <br />
                 <label for="model_file"> فایل مدل </label>
-                <input type="file" name="model_file" accept=".obj,.fbx"> <br />
+                <input type="file" name="model_file" accept=".obj,.fbx,.rar,.zip"> <br />
 				<label for="profile-desc"> توضیحات مدل</label>
                 <textarea name="description" id="profile-desc" cols="80" rows="10">{{$model['description']}}</textarea>
                 <input type="number" name="price" id="price" placeholder="قیمت" value="{{$model['price']}}">

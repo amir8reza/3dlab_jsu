@@ -92,7 +92,7 @@
                 <div class="category-card">
 
                     <div class="category-image">
-                        <a href="#">
+                        <a href="/categories/2">
                             <img src="\images\weapons.jpg" alt="weapons.jpg">
                         </a>
                     </div>
@@ -104,12 +104,12 @@
                 <div class="category-card">
 
                     <div class="category-image">
-                        <a href="#">
+                        <a href="/categories/3">
                             <img src="\images\character.jpg" alt="character.jpg">
                         </a>
                     </div>
                     <div class="category-desc">
-                        <h3>  کاراکتر </h3>
+                        <h3>  کاراکتر و حیوانات </h3>
                     </div>
                 </div>
 
@@ -118,7 +118,7 @@
                 <div class="category-card">
 
                     <div class="category-image">
-                        <a href="#">
+                        <a href="/categories/4">
                             <img src="\images\robot.jpg" alt="robot.jpg">
                         </a>
                     </div>
@@ -130,7 +130,7 @@
                 <div class="category-card">
 
                     <div class="category-image">
-                        <a href="#">
+                        <a href="/categories/5">
                             <img src="\images\pbr.jpg" alt="pbr.jpg">
                         </a>
                     </div>
@@ -142,7 +142,7 @@
                 <div class="category-card">
 
                     <div class="category-image">
-                        <a href="#">
+                        <a href="/categories/6">
                             <img src="\images\electronic.jpg" alt="electronics.jpg">
                         </a>
                     </div>

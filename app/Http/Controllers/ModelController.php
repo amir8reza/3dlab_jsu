@@ -64,7 +64,7 @@ class ModelController extends Controller
             'title' => 'required|unique:model3ds,title',
             'categories' => 'required',
             'image' => 'required|mimes:jpeg,png,jpg,svg|max:5820',
-            'model_file' => 'required|max:20480',
+            'model_file' => 'required|max:50000',
             'description' => 'string|required',
             'price' => 'required|numeric|digits_between:0,100000',
         ]);
@@ -148,7 +148,7 @@ class ModelController extends Controller
         $validated = $request->validate([
             'title' => 'required|unique:model3ds,title,'.$model->id,
             'image' => 'mimes:jpeg,png,jpg,svg|max:5820',
-            'model_file' => 'max:20480',
+            'model_file' => 'max:50000',
             'description' => 'string|required',
             'price' => 'required|numeric|digits_between:0,100000',
         ]);

@@ -20,7 +20,7 @@
                 <form action="/register" method="post">
                     @csrf
 
-                    <input name="username" type="text" placeholder="نام و نام خانوادگی">
+                    <input name="username" type="text" placeholder="نام کاربری">
                     <input name="email" type="text" placeholder="پست الکترونیک">
                     <input name="password" type="password" placeholder="کلمه عبور">
                     <input name="password_confirmation" type="password" placeholder="تکرار کلمه عبور">
