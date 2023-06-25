@@ -1,51 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.master')
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> {{$model->slug}} </title>
-</head>
-<link rel="stylesheet" href="../styles/index-styles.css">
-<link rel="stylesheet" href="../styles/model-details-styles.css">
-<link rel="stylesheet" href="../styles/fontawsome.min.css">
-<link rel="stylesheet" href="../styles/all.min.css">
+@section('title') {{$model->slug}}@endsection
 
+@section('styles')
+    <link rel="stylesheet" href="{{asset('styles/model-details-styles.css')}}">
+@endsection
 
-<body>
-
-    <header>
-        <nav>
-            <div class="top">
-                @auth
-                    <button id="profile-btn"> <a href="/profile"> پنل کاربری </a></button>
-                    <form method="post" action="/logout"> @csrf
-                        <button type="submit" id="signup-btn"> <a> خارج شدن </a> </button>
-                    </form>
-
-                @endauth
-                @guest
-                    <button id="profile-btn"> <a href="/login"> پنل کاربری </a></button>
-                    <button id="signup-btn"> <a href="/register"> عضویت  </a> </button>
-                @endguest
-                    <a href="{{route('index')}}" id="logo"> 3DLAB </a>
-            </div>
-            <div class="bot">
-                <ul>
-                    <li><a href="/about-us">درباره ما</a></li>
-                    <li><a href=""> دسته بندی </a></li>
-                    <li><a href="{{route('index')}}"> خانه </a></li>
-                </ul>
-            </div>
-        </nav>
-    </header>
+@section('main-section')
 
     <section>
         <div class="container">
             <div class="model-detail">
                 <div class="user-detail">
-                    <img id="avatar" src="../images/profile-pics/profile1.png" alt="avatar.png">
+                    <img id="avatar" src="{{asset('images/profile-pics/profile1.png')}}" alt="avatar.png">
                     <h2 id="username"> {{ $user['username']  }}  </h2>
                     <span id="model-name"> نام مدل :  {{ $model->title  }} </span> <br>
                     <span>
@@ -53,7 +20,7 @@
                     </span>
                     <span id="model-date"> آخرین تغییر : {{ $model->updated_at  }}</span> <br>
                     <span id="model-price"> قیمت : {{ $model->price  }}</span>
-                    <img class="price-icon" src="../images/icons/coin.png" alt="price-icon.png"> <br>
+                    <img class="price-icon" src="{{asset('images/icons/coin.png')}}" alt="price-icon.png"> <br>
                     @if($user['id'] != \Illuminate\Support\Facades\Auth::id())
                         @if($owned)
                             <button class="model-buy"> <i class="fa fa-solid fa-download"></i> <a href="/models/download/{{$model->slug}}"> دانلود فایل   </a> </button>
@@ -111,8 +78,4 @@
         </div>
     </section>
 
-
-
-</body>
-
-</html>
+@endsection

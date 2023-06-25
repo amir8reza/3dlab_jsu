@@ -1,53 +1,25 @@
-<!DOCTYPE html>
-<html lang="fa">
+@extends('layouts.master')
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> دسته بندی ها </title>
-</head>
-<link rel="stylesheet" href="styles/index-styles.css">
-<link rel="stylesheet" href="styles/categories-styles.css">
+@section('title', 'دسته بندی ها')
 
-<body>
+@section('styles')
+    <link rel="stylesheet" href="{{asset('styles/categories-styles.css')}}">
+@endsection
 
-    <header>
-        <nav>
-            <div class="top">
-                @auth
-                <button id="profile-btn"> <a href="/profile"> پنل کاربری </a></button>
-                    <form method="post" action="/logout"> @csrf
-                        <button type="submit" id="signup-btn"> <a> خارج شدن </a> </button>
-                    </form>
-
-                @endauth
-                    @guest
-                        <button id="profile-btn"> <a href="login"> پنل کاربری </a></button>
-                        <button id="signup-btn"> <a href="register"> عضویت  </a> </button>
-                    @endguest
-
-                <a href="{{route('index')}}" id="logo"> 3DLAB </a>
-            </div>
-            <div class="bot">
-                <ul>
-                    <li><a href="/about-us">درباره ما</a></li>
-                    <li><a href="{{route('categories')}}"> دسته بندی </a></li>
-                </ul>
-            </div>
-        </nav>
-        <div class="header-title">
-            <div class="background-overlay">
-                <div class="container">
-                    <div class="header-text">
-                        <h1> 3DLAB </h1>
-                        <p> دسته بندی ها </p>
-                    </div>
+@section('header')
+    <div class="header-title">
+        <div class="background-overlay">
+            <div class="container">
+                <div class="header-text">
+                    <h1> 3DLAB </h1>
+                    <p> دسته بندی ها </p>
                 </div>
             </div>
         </div>
-    </header>
+    </div>
+@endsection
 
+@section('main-section')
     <section>
         <div class="container">
             <div class="row">
@@ -60,111 +32,100 @@
 
             @isset($models)
                 <div class="row">
-                @foreach($models as $model)
-                    <div class="card">
-                        <div class="card-image">
-                            <a href="/models/{{$model->slug}}"> <img src="{{asset('storage/'.$model->images['image'])}}"> </a>
+                    @foreach($models as $model)
+                        <div class="card">
+                            <div class="card-image">
+                                <a href="/models/{{$model->slug}}"> <img src="{{asset('storage/'.$model->images['image'])}}"> </a>
+                            </div>
+                            <div class="card-text">
+                                <p>  {{$model->title}} </p>
+                                <img class="like-icon" src="{{asset('images/icons/heart.png')}}" alt="like-icon.png">
+                                <span class="like-number"> 5 </span>
+                                <img class="price-icon" src="{{asset('images/icons/coin.png')}}" alt="price-icon.png">
+                                <span class="price-number"> 350 </span>
+                            </div>
                         </div>
-                        <div class="card-text">
-                            <p>  {{$model->title}} </p>
-                            <img class="like-icon" src="../images/icons/heart.png" alt="like-icon.png">
-                            <span class="like-number"> 5 </span>
-                            <img class="price-icon" src="../images/icons/coin.png" alt="price-icon.png">
-                            <span class="price-number"> 350 </span>
-                        </div>
-                    </div>
-                @endforeach
-            </div>
+                    @endforeach
+                </div>
             @else
-            <div class="row">
-                <div class="category-card">
+                <div class="row">
+                    <div class="category-card">
 
-                    <div class="category-image">
-                        <a href="/categories/1">
-                            <img src="\images\cars.jpg" alt="cars.jpg">
-                        </a>
+                        <div class="category-image">
+                            <a href="/categories/1">
+                                <img src="{{asset('images/cars.jpg')}}" alt="cars.jpg">
+                            </a>
+                        </div>
+                        <div class="category-desc">
+                            <h3> وسیله نقلیه </h3>
+                        </div>
                     </div>
-                    <div class="category-desc">
-                        <h3> وسیله نقلیه </h3>
+
+                    <div class="category-card">
+
+                        <div class="category-image">
+                            <a href="/categories/2">
+                                <img src="{{asset('images/weapons.jpg')}}" alt="weapons.jpg">
+                            </a>
+                        </div>
+                        <div class="category-desc">
+                            <h3> اسلحه و نظامی </h3>
+                        </div>
                     </div>
+
+                    <div class="category-card">
+
+                        <div class="category-image">
+                            <a href="/categories/3">
+                                <img src="{{asset('images/character.jpg')}}" alt="character.jpg">
+                            </a>
+                        </div>
+                        <div class="category-desc">
+                            <h3>  کاراکتر و حیوانات </h3>
+                        </div>
+                    </div>
+
                 </div>
+                <div class="row">
+                    <div class="category-card">
 
-                <div class="category-card">
+                        <div class="category-image">
+                            <a href="/categories/4">
+                                <img src="{{asset('images/robot.jpg')}}" alt="robot.jpg">
+                            </a>
+                        </div>
+                        <div class="category-desc">
+                            <h3> ربات  </h3>
+                        </div>
+                    </div>
 
-                    <div class="category-image">
-                        <a href="/categories/2">
-                            <img src="\images\weapons.jpg" alt="weapons.jpg">
-                        </a>
+                    <div class="category-card">
+
+                        <div class="category-image">
+                            <a href="/categories/5">
+                                <img src="{{asset('images/pbr.jpg')}}" alt="pbr.jpg">
+                            </a>
+                        </div>
+                        <div class="category-desc">
+                            <h3> PBR  </h3>
+                        </div>
                     </div>
-                    <div class="category-desc">
-                        <h3> اسلحه و نظامی </h3>
+
+                    <div class="category-card">
+
+                        <div class="category-image">
+                            <a href="/categories/6">
+                                <img src="{{asset('images/electronic.jpg')}}" alt="electronics.jpg">
+                            </a>
+                        </div>
+                        <div class="category-desc">
+                            <h3>  دستگاه الترونیک </h3>
+                        </div>
                     </div>
+
                 </div>
-
-                <div class="category-card">
-
-                    <div class="category-image">
-                        <a href="/categories/3">
-                            <img src="\images\character.jpg" alt="character.jpg">
-                        </a>
-                    </div>
-                    <div class="category-desc">
-                        <h3>  کاراکتر و حیوانات </h3>
-                    </div>
-                </div>
-
-            </div>
-            <div class="row">
-                <div class="category-card">
-
-                    <div class="category-image">
-                        <a href="/categories/4">
-                            <img src="\images\robot.jpg" alt="robot.jpg">
-                        </a>
-                    </div>
-                    <div class="category-desc">
-                        <h3> ربات  </h3>
-                    </div>
-                </div>
-
-                <div class="category-card">
-
-                    <div class="category-image">
-                        <a href="/categories/5">
-                            <img src="\images\pbr.jpg" alt="pbr.jpg">
-                        </a>
-                    </div>
-                    <div class="category-desc">
-                        <h3> PBR  </h3>
-                    </div>
-                </div>
-
-                <div class="category-card">
-
-                    <div class="category-image">
-                        <a href="/categories/6">
-                            <img src="\images\electronic.jpg" alt="electronics.jpg">
-                        </a>
-                    </div>
-                    <div class="category-desc">
-                        <h3>  دستگاه الترونیک </h3>
-                    </div>
-                </div>
-
-            </div>
             @endisset
         </div>
     </section>
+@endsection
 
-    <footer>
-        <ul>
-            <li><a href="#"> درباره </a></li>
-            <li><a href="#"> حمایت </a></li>
-            <li><a href="#"> تماس با ما </a></li>
-        </ul>
-
-    </footer>
-
-</body>
-
-</html>

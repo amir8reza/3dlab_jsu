@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> ورود به سایت </title>
 
-    <link rel="stylesheet" href="styles/sign_in-styles.css">
+    <link rel="stylesheet" href="{{asset('styles/sign_in-styles.css')}}">
 </head>
 
 <body>

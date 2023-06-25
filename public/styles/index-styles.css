@@ -25,8 +25,6 @@ body {
 header {
     height: 700px;
     width: 100%;
-
-
 }
 
 header nav {
@@ -336,4 +334,19 @@ footer ul li a {
 .sub_cat_title a:hover
 {
     color: #afafaf;
+}
+
+header .price-icon {
+    width: 20px;
+    height: 20px;
+    float: right;
+    margin-top: 20px;
+    margin-right: 5px;
+}
+
+header .price-number {
+    float: right;
+    margin-right: 5px;
+    margin-top: 20px;
+    color: white;
 }

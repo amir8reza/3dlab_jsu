@@ -1,69 +1,31 @@
-<!DOCTYPE html>
-<html lang="fa">
+@extends('layouts.master')
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> درباره ما </title>
-</head>
-<link rel="stylesheet" href="styles/index-styles.css">
+@section('title', 'درباره ما')
 
-<body>
-
-    <header>
-        <nav>
-            <div class="top">
-                @auth
-                <button id="profile-btn"> <a href="profile"> پنل کاربری </a></button>
-                    <form method="post" action="/logout"> @csrf
-                        <button type="submit" id="signup-btn"> <a> خارج شدن </a> </button>
-                    </form>
-
-                @endauth
-                    @guest
-                        <button id="profile-btn"> <a href="login"> پنل کاربری </a></button>
-                        <button id="signup-btn"> <a href="register"> عضویت  </a> </button>
-                    @endguest
-
-                <a href="#" id="logo"> 3DLAB </a>
-            </div>
-            <div class="bot">
-                <ul>
-                    <li><a href="">درباره ما</a></li>
-                    <li><a href=""> سفارش </a></li>
-                    <li><a href=""> دسته بندی </a></li>
-                </ul>
-            </div>
-        </nav>
-        <div class="header-title">
-            <div class="background-overlay">
-                <div class="container">
-                    <div class="header-text">
-                        <h1> 3DLAB </h1>
-                        <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است،
-                            چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که </p>
-                    </div>
+@section('header')
+    <div class="header-title">
+        <div class="background-overlay">
+            <div class="container">
+                <div class="header-text">
+                    <h1> 3DLAB </h1>
+                    <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است،
+                        چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که </p>
                 </div>
             </div>
         </div>
-    </header>
+    </div>
+@endsection
 
+@section('main-section')
     <section>
         <div class="container">
-                <h1> امیررضا حدادزاده </h1>
+            <p> طراح و برنامه نویس : امیررضا حدادزاده </p> <br />
+            <p> ایمیل : amir8reza79@gmail.com </p> <br />
+            <p> شماره تلفن : 09333222806 </p>   <br />
         </div>
     </section>
+@endsection
 
-    <footer>
-        <ul>
-            <li><a href="{{route('aboutUs')}}">درباره ما</a></li>
-            <li><a href=""> دسته بندی </a></li>
-            <li><a href="{{route('index')}}"> خانه </a></li>
-        </ul>
 
-    </footer>
 
-</body>
 
-</html>

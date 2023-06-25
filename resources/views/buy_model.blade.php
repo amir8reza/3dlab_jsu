@@ -1,44 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.master')
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> سبد خرید </title>
-</head>
-<link rel="stylesheet" href="../../styles/index-styles.css">
-<link rel="stylesheet" href="../../styles/model-buy-styles.css">
+@section('title', 'سبدخرید')
 
-<body>
+@section('styles')
+    <link rel="stylesheet" href="{{asset('styles/model-buy-styles.css')}}">
+@endsection
 
-    <header>
-        <nav>
-            <div class="top">
-                @auth
-                    <button id="profile-btn"> <a href="/profile"> پنل کاربری </a></button>
-                    <form method="post" action="/logout"> @csrf
-                        <button type="submit" id="signup-btn"> <a> خارج شدن </a> </button>
-                    </form>
-
-                @endauth
-                @guest
-                    <button id="profile-btn"> <a href="/login"> پنل کاربری </a></button>
-                    <button id="signup-btn"> <a href="/register"> عضویت  </a> </button>
-                @endguest
-
-                <a href="{{route('index')}}" id="logo"> 3DLAB </a>
-            </div>
-            <div class="bot">
-                <ul>
-                    <li><a href="">درباره ما</a></li>
-                    <li><a href=""> سفارش </a></li>
-                    <li><a href=""> دسته بندی </a></li>
-                </ul>
-            </div>
-        </nav>
-    </header>
-
+@section('main-section')
     <section>
         <div class="container">
             <div class="model-detail">
@@ -53,7 +21,7 @@
                             </p>
                             <form action="/models/buy/delete/{{$sale->id}}" method="post"> @csrf
                                 @method('delete')
-                            <button> حذف از سبد </button>
+                                <button> حذف از سبد </button>
                             </form>
                         </div>
                     @endforeach
@@ -68,9 +36,9 @@
             </div>
         </div>
     </section>
+@endsection
 
 
 
-</body>
 
-</html>
+

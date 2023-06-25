@@ -5,12 +5,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> 3DLAB </title>
-</head>
-<link rel="stylesheet" href="styles/index-styles.css">
-<link rel="stylesheet" href="../styles/fontawsome.min.css">
-<link rel="stylesheet" href="../styles/all.min.css">
+    <title> @yield('title') </title>
+    <link rel="stylesheet" href="{{asset('styles/index-styles.css')}}">
+    <link rel="stylesheet" href="{{asset('styles/fontawsome.min.css')}}">
+    <link rel="stylesheet" href="{{asset('styles/all.min.css')}}">
 
+</head>
+@yield('styles')
 <body>
 
 <header>
@@ -21,7 +22,7 @@
                 <form method="post" action="/logout"> @csrf
                     <button type="submit" id="signup-btn"> <a> خارج شدن </a> </button>
                 </form>
-                <img class="price-icon" src="images/icons/coin.png" alt="price-icon.png">
+                <img class="price-icon" src="{{ asset('images/icons/coin.png') }}" alt="price-icon.png">
                 <span class="price-number"> {{ \Illuminate\Support\Facades\Auth::user()->wallet }} </span>
             @endauth
             @guest
@@ -43,47 +44,10 @@
             </ul>
         </div>
     </nav>
-    <div class="header-title">
-        <div class="background-overlay">
-            <div class="container">
-                <div class="header-text">
-                    <h1> 3DLAB </h1>
-                    <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است،
-                        چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که </p>
-                </div>
-            </div>
-        </div>
-    </div>
+   @yield('header')
 </header>
 
-<section>
-    <div class="container">
-        <h1> جدیدترین ها </h1>
-        <div class="row">
-
-            @isset($new_models)
-                @foreach($new_models as $new_model)
-                    <div class="card">
-                        <div class="card-image">
-                            <a href="models/{{$new_model->slug}}"> <img src="{{asset('storage/'.$new_model->images['image'])}}"> </a>
-                        </div>
-                        <div class="card-text">
-                            <p>  {{$new_model->title}} </p>
-                            <img class="like-icon" src="images/icons/heart.png" alt="like-icon.png">
-                            <span class="like-number"> 5 </span>
-                            <img class="price-icon" src="images/icons/coin.png" alt="price-icon.png">
-                            <span class="price-number"> 350 </span>
-                        </div>
-                    </div>
-                @endforeach
-            @else
-                مدلی در دیتابیس نیست
-            @endisset
-
-        </div>
-
-    </div>
-</section>
+@yield('main-section')
 
 <footer>
     <ul>

@@ -1,87 +1,60 @@
-<!DOCTYPE html>
-<html lang="fa">
+@extends('layouts.master')
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> دسته بندی </title>
-</head>
-<link rel="stylesheet" href="../../styles/index-styles.css">
+@section('title', 'پنل کاربری')
 
-<body>
+@section('styles')
+    <link rel="stylesheet" href="{{asset('styles/profile-styles.css')}}">
+@endsection
 
-    <header>
-        <nav>
-            <div class="top">
-                @auth
-                <button id="profile-btn"> <a href="/profile"> پنل کاربری </a></button>
-                    <form method="post" action="/logout"> @csrf
-                        <button type="submit" id="signup-btn"> <a> خارج شدن </a> </button>
-                    </form>
-
-                @endauth
-                    @guest
-                        <button id="profile-btn"> <a href="login"> پنل کاربری </a></button>
-                        <button id="signup-btn"> <a href="register"> عضویت  </a> </button>
-                    @endguest
-
-                <a href="{{route('index')}}" id="logo"> 3DLAB </a>
-            </div>
-            <div class="bot">
-                <ul>
-                    <li><a href="/about-us">درباره ما</a></li>
-                    <li><a href="{{route('categories')}}"> دسته بندی </a></li>
-                </ul>
-            </div>
-        </nav>
-        <div class="header-title">
-            <div class="background-overlay">
-                <div class="container">
-                    <div class="header-text">
-                        <h1> 3DLAB </h1>
-                        <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است،
-                            چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که </p>
-                    </div>
+@section('header')
+    <div class="header-title">
+        <div class="background-overlay">
+            <div class="container">
+                <div class="header-text">
+                    <h1> 3DLAB </h1>
+                    <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است،
+                        چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که </p>
                 </div>
             </div>
         </div>
-    </header>
+    </div>
+@endsection
 
+@section('main-section')
     <section>
         <div class="container">
             <h1> دسته بندی ها </h1>
-                <div class="sub_cat">
-                    @isset($main_category->children)
-                        @foreach($main_category->children as $sub_category)
+            <div class="sub_cat">
+                @isset($main_category->children)
+                    @foreach($main_category->children as $sub_category)
                         <div class="sub_cat_title">
                             <a href="/categories/{{$sub_category->parent_id.'/'.$sub_category->id}}"> {{$sub_category->title}} </a>
                         </div>
-                        @endforeach
-                    @endisset
-                </div>
+                    @endforeach
+                @endisset
+            </div>
 
 
             <div class="row">
 
                 @isset($main_category)
-                        @foreach($main_category->children as $child)
-                            @foreach($child->model3ds as $new_model)
-                                <div class="card">
-                                    <div class="card-image">
-                                        <a href="/models/{{$new_model->slug}}"> <img src="{{asset('storage/'.$new_model->images['image'])}}"> </a>
-                                    </div>
-                                    <div class="card-text">
-                                        <p>  {{$new_model->title}} </p>
-                                        <img class="like-icon" src="../images/icons/heart.png" alt="like-icon.png">
-                                        <span class="like-number"> 5 </span>
-                                        <img class="price-icon" src="../images/icons/coin.png" alt="price-icon.png">
-                                        <span class="price-number"> 350 </span>
-                                    </div>
+                    @foreach($main_category->children as $child)
+                        @foreach($child->model3ds as $new_model)
+                            <div class="card">
+                                <div class="card-image">
+                                    <a href="/models/{{$new_model->slug}}"> <img src="{{asset('storage/'.$new_model->images['image'])}}"> </a>
                                 </div>
-                            @endforeach
+                                <div class="card-text">
+                                    <p>  {{$new_model->title}} </p>
+                                    <img class="like-icon" src="{{asset('images/icons/heart.png')}}" alt="like-icon.png">
+                                    <span class="like-number"> 5 </span>
+                                    <img class="price-icon" src="{{asset('images/icons/coin.png')}}" alt="price-icon.png">
+                                    <span class="price-number"> 350 </span>
+                                </div>
+                            </div>
                         @endforeach
-                    @else
+                    @endforeach
+                @else
                     @isset($sub_category)
                         @foreach($sub_category->model3ds as $new_model)
                             <div class="card">
@@ -90,9 +63,9 @@
                                 </div>
                                 <div class="card-text">
                                     <p>  {{$new_model->title}} </p>
-                                    <img class="like-icon" src="../../images/icons/heart.png" alt="like-icon.png">
+                                    <img class="like-icon" src="{{asset('images/icons/heart.png')}}" alt="like-icon.png">
                                     <span class="like-number"> 5 </span>
-                                    <img class="price-icon" src="../../images/icons/coin.png" alt="price-icon.png">
+                                    <img class="price-icon" src="{{asset('images/icons/coin.png')}}" alt="price-icon.png">
                                     <span class="price-number"> 350 </span>
                                 </div>
                             </div>
@@ -103,16 +76,4 @@
 
         </div>
     </section>
-
-    <footer>
-        <ul>
-            <li><a href="#"> درباره </a></li>
-            <li><a href="#"> حمایت </a></li>
-            <li><a href="#"> تماس با ما </a></li>
-        </ul>
-
-    </footer>
-
-</body>
-
-</html>
+@endsection
