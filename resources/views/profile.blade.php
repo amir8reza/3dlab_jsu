@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Profile </title>
+    <title> پنل کاربری </title>
 </head>
 <link rel="stylesheet" href="styles/profile-styles.css">
 <link rel="stylesheet" href="../styles/fontawsome.min.css">
@@ -16,21 +16,29 @@
     <header>
         <nav>
             <div class="top">
-                <button id="profile-btn"> <a href="/profile"> پنل کاربری </a></button>
-                <form method="post" action="{{ route('logout')  }}"> @csrf
-                    <button type="submit" id="signup-btn"> <a> خارج شدن </a> </button>
-                </form>
+                @auth
+                    <button id="profile-btn"> <a href="/profile"> پنل کاربری </a></button>
+                    <form method="post" action="/logout"> @csrf
+                        <button type="submit" id="signup-btn"> <a> خارج شدن </a> </button>
+                    </form>
+                @endauth
+                @guest
+                    <button id="profile-btn"> <a href="login"> پنل کاربری </a></button>
+                    <button id="signup-btn"> <a href="register"> عضویت  </a> </button>
+                @endguest
                 <img class="price-icon" src="images/icons/coin.png" alt="price-icon.png">
                 <span class="price-number"> {{ $user['wallet'] }} </span>
-                <a href="/index" id="logo"> 3DLAB </a>
+                    <a href="{{route('index')}}" id="logo"> 3DLAB </a>
             </div>
             <div class="bot">
                 <ul>
+                    @auth
                     <li><a href="{{route('userCart')}}"> <i class="fa fa-solid fa-shopping-cart"></i> سبد خرید </a></li>
-                    <li><a href="{{route('aboutUs')}}">درباره ما</a></li>
-                    <li><a href="{{route('categories')}}"> دسته بندی </a></li>
                     <li><a href="/profile/edit"> ویرایش پروفایل </a></li>
                     <li><a href="{{route('buyCoin')}}"> افزایش اعتبار </a></li>
+                    @endauth
+                    <li><a href="{{route('categories')}}"> دسته بندی </a></li>
+                    <li><a href="{{route('aboutUs')}}">درباره ما</a></li>
                     <li><a href="{{route('index')}}"> خانه </a></li>
                 </ul>
             </div>
