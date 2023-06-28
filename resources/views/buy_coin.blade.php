@@ -11,7 +11,7 @@
         <div class="container">
 
             <div class="buy-coin">
-                <h2> خرید سکه </h2>
+                <h2> افزایش اعتبار </h2>
                 <form action="{{route('buyCoin')}}" method="post"> @csrf @method('put')
                     <input type="number" name="amount">
                     <button type="submit"> خرید </button>

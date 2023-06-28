@@ -19,6 +19,9 @@
         <div class="top">
             @auth
                 <button id="profile-btn"> <a href="/profile"> پنل کاربری </a></button>
+                @if(\Illuminate\Support\Facades\Auth::user()->role=='admin')
+                    <button id="profile-btn"> <a href="/admin"> پنل مدیریت </a></button>
+                @endif
                 <form method="post" action="/logout"> @csrf
                     <button type="submit" id="signup-btn"> <a> خارج شدن </a> </button>
                 </form>

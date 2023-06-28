@@ -25,7 +25,11 @@
                         @if($owned)
                             <button class="model-buy"> <i class="fa fa-solid fa-download"></i> <a href="/models/download/{{$model->slug}}"> دانلود فایل   </a> </button>
                         @else
-                            <button class="model-buy"> <i class="fa fa-solid fa-shopping-cart"></i> <a href="/models/buy/add/{{$model->id}}"> افزودن به سبد </a> </button>
+                            @if($waiting_in_cart)
+                                <button class="model-buy"> <i class="fa fa-solid fa-shopping-cart"></i> <a> در انتظار پرداخت </a> </button>
+                            @else
+                                <button class="model-buy"> <i class="fa fa-solid fa-shopping-cart"></i> <a href="/models/buy/add/{{$model->id}}"> افزودن به سبد </a> </button>
+                            @endif
                         @endif
                         <button class="model-chat"> <i class="fa fa-solid fa-message"></i> <a href="/chat/{{$user['id']}}"> پیام به {{$user['username']}} </a> </button>
                     @else

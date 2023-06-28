@@ -9,11 +9,11 @@ class Model3d extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'slug', 'price', 'file_format', 'file', 'creator_id', 'description'];
+    protected $fillable = ['title', 'slug', 'price', 'file_format', 'file', 'creator_id', 'description', 'is_deleted'];
 
     public function user(){
 
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'creator_id');
 
     }
 

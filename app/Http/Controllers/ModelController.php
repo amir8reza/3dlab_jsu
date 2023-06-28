@@ -25,18 +25,21 @@ class ModelController extends Controller
         $image_url = asset('storage/'.$image->image);
         $comments = Comment::where('model3d_id', $model->id)->get()->all();
 
+        $waiting_in_cart = false;
         if(Auth::check()) {
             $owned = Auth::user()->sales()->where('model3d_id', '=', $model->id)->where('status', 'true')->get();
             if ($owned->count()>0)
             {
                 $owned = true;
             }
-            else
+            else {
                 $owned = false;
+                if (Auth::user()->sales()->where('model3d_id', '=', $model->id)->where('status', 'false')->count() > 0)
+                    $waiting_in_cart = true;
+            }
         }
         else
             $owned = false;
-
 
 
         return view('model_details', [
@@ -44,7 +47,8 @@ class ModelController extends Controller
             'model' => $model,
             'image_url' => $image_url,
             'comments' => $comments,
-            'owned' => $owned
+            'owned' => $owned,
+            'waiting_in_cart' => $waiting_in_cart
         ]);
     }
 
@@ -195,7 +199,19 @@ class ModelController extends Controller
     {
 
        $model = Model3d::findOrFail($request['id']);
+
+//       if(Sale::where('model3d_id', $model->id)->where('status', 'true')->count())
+//       {
+//            $model->update([
+//                'is_deleted' => 1
+//            ]);
+//           return redirect(route('profilePanel'));
+//       }
+        Storage::delete($model->file);
+        Storage::delete('public/'.$model->images->image);
+
         $model->delete();
+
         return redirect(route('profilePanel'));
 
     }

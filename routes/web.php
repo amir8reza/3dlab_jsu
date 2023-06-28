@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminPanelController;
 use App\Http\Controllers\BuyModelController;
 use App\Http\Controllers\ModelController;
 use App\Models\Model3d;
@@ -69,4 +70,9 @@ Route::delete('models/buy/delete/{id}', [BuyModelController::class, 'delete_from
 Route::get('coin/buy', [BuyModelController::class, 'buy_coin_view'])->name('buyCoin')->middleware('auth');
 Route::put('coin/buy', [BuyModelController::class, 'buy_coin'])->middleware('auth');
 
-
+//admin routes
+Route::get('admin', [AdminPanelController::class, 'admin_view'])->middleware('auth', 'admin');
+Route::get('admin/users', [AdminPanelController::class, 'admin_users_view'])->middleware('auth', 'admin');
+Route::get('admin/models', [AdminPanelController::class, 'admin_models_view'])->middleware('auth', 'admin');
+Route::get('admin/sales', [AdminPanelController::class, 'admin_sales_view'])->middleware('auth', 'admin');
+Route::get('admin/categories', [AdminPanelController::class, 'admin_categories_view'])->middleware('auth', 'admin');

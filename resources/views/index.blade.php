@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', '3DLAB')
+@section('title', '3DLAB - خانه')
 
 @section('header')
     <div class="header-title">

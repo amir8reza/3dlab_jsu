@@ -67,3 +67,8 @@ section .container {
     margin-right: 80px;
     margin-top: 20px;
 }
+
+.buy-coin form button:hover {
+    cursor:pointer;
+    color: #c5c5c5;
+}
