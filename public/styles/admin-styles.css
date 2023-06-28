@@ -1,0 +1,47 @@
+header
+{
+    height: 100px;
+}
+
+section
+{
+    height: auto;
+    width: 100%;
+    padding: 100px 0;
+}
+
+section .row
+{
+    margin: 50px auto;
+    height: 140px;
+    width: 100%;
+}
+
+section .row .card
+{
+    margin:20px auto;
+    height: 250px;
+    width: 250px;
+}
+
+.card a{
+    text-decoration: none;
+    color: white;
+    height: 250px;
+    width: 250px;
+    display: block;
+}
+
+.card a:hover{
+    color: gainsboro;
+}
+
+.card i{
+    margin-top: 50px;
+    margin-right: 85px;
+}
+
+.card h2{
+    text-align: center;
+    margin-top: 50px;
+}

@@ -1,0 +1,68 @@
+header
+{
+    height: 100px;
+}
+
+section
+{
+    height: 400px;
+    background-color: #1a1d20;
+    width: 80%;
+    margin: 20px auto;
+    padding-bottom: 20px;
+    overflow-y: scroll;
+}
+
+section .header-row
+{
+    color: blue;
+    height: 50px;
+    width: 100%;
+    border-bottom: 1px solid white;
+
+}
+
+.header-row p {
+    margin: 10px auto;
+}
+
+.header-row p:first-of-type
+{
+    margin-right: 0;
+}
+
+section .row
+{
+    height: 50px;
+    width: 100%;
+    border-bottom: 1px solid white;
+}
+
+.row p {
+    margin: 10px auto;
+}
+
+.row p:first-of-type {
+    margin-right: 0;
+}
+
+/* Scrollbar  */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background-color: rgb(15, 15, 15);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
