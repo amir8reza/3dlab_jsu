@@ -56,6 +56,13 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::post('/logout',[\App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
 
+//forgot password
+Route::get('/forgot-password', [UserProfileController::class, 'forgot_password_view'])->middleware('guest');
+Route::post('/forgot-password', [UserProfileController::class, 'forgot_password_email'])->middleware('guest');
+Route::get('/reset-password/{token}', [UserProfileController::class, 'reset_password_view'])->middleware('guest');
+Route::post('/reset-password', [UserProfileController::class, 'reset_password_form'])->middleware('guest');
+
+
 //profile Routing
 Route::get('/profile', [UserProfileController::class, 'profile_view'])->name('profilePanel')->middleware('auth');
 Route::get('profile/edit', [UserProfileController::class, 'profile_edit_view'])->middleware('auth');

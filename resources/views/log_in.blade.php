@@ -23,10 +23,17 @@
                     <input name="password" type="password" placeholder="کلمه عبور">
 
                     <button type="submit"> ورود </button>
-
                 </form>
-                <a href="#"> بازیابی کلمه عبور </a>
+                @if($errors->any())
+                    <ul class="errors_ul">
+                        @foreach ($errors->all() as $error)
+                            <li style="color:red;font-size:12px;list-style:none;margin-bottom:5px"> {{$error}} </li>
+                        @endforeach
+                    </ul>
+                @endif
+                <a href="/forgot-password"> بازیابی کلمه عبور </a>
                 <a href="register"> ساخت اکانت جدید </a>
+
             </div>
         </div>
 
