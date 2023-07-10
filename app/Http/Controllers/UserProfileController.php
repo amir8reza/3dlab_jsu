@@ -23,7 +23,7 @@ class UserProfileController extends Controller
 
 
         $user = User::findOrFail(Auth::id());
-        $models = User::find(Auth::id())->model3ds;
+        $models = User::find(Auth::id())->model3ds()->where('is_active', '=', true)->get();
         $sales = Sale::with('model3ds')->where('user_id','=', Auth::id())->where('status','=', 'true')->get();
 
         return view('profile', [

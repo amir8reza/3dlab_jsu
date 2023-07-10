@@ -40,6 +40,7 @@
                 @isset($main_category)
                     @foreach($main_category->children as $child)
                         @foreach($child->model3ds as $new_model)
+                            @if($new_model->is_active)
                             <div class="card">
                                 <div class="card-image">
                                     <a href="/models/{{$new_model->slug}}"> <img src="{{asset('storage/'.$new_model->images['image'])}}"> </a>
@@ -50,11 +51,13 @@
                                     <span class="price-number"> 350 </span>
                                 </div>
                             </div>
+                            @endif
                         @endforeach
                     @endforeach
                 @else
                     @isset($sub_category)
                         @foreach($sub_category->model3ds as $new_model)
+                            @if($new_model->is_active)
                             <div class="card">
                                 <div class="card-image">
                                     <a href="models/{{$new_model->slug}}"> <img src="{{asset('storage/'.$new_model->images['image'])}}"> </a>
@@ -65,6 +68,7 @@
                                     <span class="price-number"> 350 </span>
                                 </div>
                             </div>
+                            @endif
                         @endforeach
                     @endisset
                 @endisset

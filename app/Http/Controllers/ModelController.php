@@ -22,14 +22,6 @@ class ModelController extends Controller
     {
         $model = Model3d::where('slug', $slug)->get()->first();
 
-        if($model == null || !$model->is_active)
-            return abort(404);
-
-        $user = User::findOrFail($model->creator_id);
-        $image = $model->images;
-        $image_url = asset('storage/'.$image->image);
-        $comments = Comment::where('model3d_id', $model->id)->get()->all();
-
         $waiting_in_cart = false;
         if(Auth::check()) {
             $owned = Auth::user()->sales()->where('model3d_id', '=', $model->id)->where('status', 'true')->get();
@@ -45,6 +37,16 @@ class ModelController extends Controller
         }
         else
             $owned = false;
+
+        if($model == null || (!$model->is_active && !$owned))
+            return abort(404);
+
+        $user = User::findOrFail($model->creator_id);
+        $image = $model->images;
+        $image_url = asset('storage/'.$image->image);
+        $comments = Comment::where('model3d_id', $model->id)->get()->all();
+
+
 
         if (count($comments) == 0)
             $rating = 'امتیازی داده نشده است';
@@ -215,16 +217,22 @@ class ModelController extends Controller
     {
 
         $model = Model3d::findOrFail($request['id']);
-
+        
         if ($model->creator_id == Auth::id()) {
-            Storage::delete($model->file);
-            Storage::delete('public/' . $model->images->image);
-
-            $model->delete();
-
+            if (Sale::where('model3d_id', '=', $model['id'])->exist())
+            {
+                $model->update([
+                    'is_active' => false
+                ]);
+            }
+            else {
+                Storage::delete($model->file);
+                Storage::delete('public/' . $model->images->image);
+                $model->delete();
+            }
             return redirect(route('profilePanel'));
         }
-
+        else
          abort(404);
     }
 
