@@ -14,12 +14,17 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use function PHPUnit\Framework\isNull;
 
 class ModelController extends Controller
 {
     public function model_detail_view($slug)
     {
         $model = Model3d::where('slug', $slug)->get()->first();
+
+        if($model == null || !$model->is_active)
+            return abort(404);
+
         $user = User::findOrFail($model->creator_id);
         $image = $model->images;
         $image_url = asset('storage/'.$image->image);
@@ -41,6 +46,17 @@ class ModelController extends Controller
         else
             $owned = false;
 
+        if (count($comments) == 0)
+            $rating = 'امتیازی داده نشده است';
+        else {
+            $rating = 0;
+            foreach ($comments as $comment)
+            {
+                $rating += $comment->rate;
+            }
+            $rating = $rating/count($comments);
+        }
+
 
         return view('model_details', [
             'user' => $user,
@@ -48,7 +64,8 @@ class ModelController extends Controller
             'image_url' => $image_url,
             'comments' => $comments,
             'owned' => $owned,
-            'waiting_in_cart' => $waiting_in_cart
+            'waiting_in_cart' => $waiting_in_cart ,
+            'rating' => $rating
         ]);
     }
 
@@ -147,80 +164,75 @@ class ModelController extends Controller
     {
         $model = Model3d::findOrFail($request['id']);
 
+        if ($model->creator_id == Auth::id()) {
+            $validated = $request->validate([
+                'title' => 'required|unique:model3ds,title,' . $model->id,
+                'image' => 'mimes:jpeg,png,jpg,svg|max:5820',
+                'model_file' => 'max:50000',
+                'description' => 'string|required',
+                'price' => 'required|numeric|digits_between:0,100000',
+            ]);
 
-
-        $validated = $request->validate([
-            'title' => 'required|unique:model3ds,title,'.$model->id,
-            'image' => 'mimes:jpeg,png,jpg,svg|max:5820',
-            'model_file' => 'max:50000',
-            'description' => 'string|required',
-            'price' => 'required|numeric|digits_between:0,100000',
-        ]);
-
-        $slug_field = Str::slug($validated['title'], '-');
-
-        $model->update([
-            'title' => $validated['title'],
-            'slug' => $slug_field,
-            'description' => $validated['description'],
-            'price' => $validated['price']
-        ]);
-
-        if($request->hasFile('model_file'))
-        {
-            $file_format = $request->file('model_file')->getClientOriginalExtension();
-            $file_name = $slug_field.'.'.$file_format;
-            $file_path = $request->file('model_file')->storeAs('models/'.$model['creator_id'],$file_name);
+            $slug_field = Str::slug($validated['title'], '-');
 
             $model->update([
-                'file' => $file_path,
-                'file_format' => $file_format
+                'title' => $validated['title'],
+                'slug' => $slug_field,
+                'description' => $validated['description'],
+                'price' => $validated['price']
             ]);
+
+            if ($request->hasFile('model_file')) {
+                $file_format = $request->file('model_file')->getClientOriginalExtension();
+                $file_name = $slug_field . '.' . $file_format;
+                $file_path = $request->file('model_file')->storeAs('models/' . $model['creator_id'], $file_name);
+
+                $model->update([
+                    'file' => $file_path,
+                    'file_format' => $file_format
+                ]);
+            }
+
+            if ($request->hasFile('image')) {
+                $image = Image::where('model_id', $model['id'])->get()->first();
+                $image_name = $slug_field . '.' . $request->file('image')->getClientOriginalExtension();
+                $request->file('image')->storeAs('public/images/' . $model['creator_id'], $image_name);
+                $image_path = '/images/' . $model['creator_id'] . '/' . $image_name;
+                Storage::delete($image['image']);
+
+                $image->update([
+                    'image' => $image_path
+                ]);
+            }
+
+            return redirect(route('profilePanel'));
         }
 
-        if($request->hasFile('image'))
-        {
-            $image = Image::where('model_id', $model['id'])->get()->first();
-            $image_name = $slug_field.'.'.$request->file('image')->getClientOriginalExtension();
-            $request->file('image')->storeAs('public/images/'.$model['creator_id'], $image_name);
-            $image_path = '/images/'.$model['creator_id'].'/'.$image_name;
-            Storage::delete($image['image']);
-
-            $image->update([
-                'image' => $image_path
-            ]);
-        }
-
-        return redirect(route('profilePanel'));
-
+        abort(404);
     }
 
     public function delete_model(Request $request)
     {
 
-       $model = Model3d::findOrFail($request['id']);
+        $model = Model3d::findOrFail($request['id']);
 
-//       if(Sale::where('model3d_id', $model->id)->where('status', 'true')->count())
-//       {
-//            $model->update([
-//                'is_deleted' => 1
-//            ]);
-//           return redirect(route('profilePanel'));
-//       }
-        Storage::delete($model->file);
-        Storage::delete('public/'.$model->images->image);
+        if ($model->creator_id == Auth::id()) {
+            Storage::delete($model->file);
+            Storage::delete('public/' . $model->images->image);
 
-        $model->delete();
+            $model->delete();
 
-        return redirect(route('profilePanel'));
+            return redirect(route('profilePanel'));
+        }
 
+         abort(404);
     }
 
     public function download_model(Request $request)
     {
         $model = Model3d::where('slug', $request['slug'])->get()->first();
 
-        if ($model == null) {
+        if ($model == null || !$model->is_active) {
             abort(404);
         }
         else {
@@ -256,7 +268,7 @@ class ModelController extends Controller
 
     public function search(Request $request)
     {
-        $models = Model3d::where('title', 'like', '%'.$request['search_bar_text'].'%')->get();
+        $models = Model3d::where('title', 'like', '%'.$request['search_bar_text'].'%')->where('is_active', true)->get();
 
         return view('categories', ['models' => $models]);
     }

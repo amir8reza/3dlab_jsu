@@ -10,7 +10,6 @@
     <section>
         <div class="container">
             <div class="row header-row">
-                <p> ID </p>
                 <p> نام کاربری </p>
                 <p> ایمیل </p>
                 <p> شماره تلفن </p>
@@ -21,12 +20,11 @@
             @isset($users)
                 @foreach($users as $user)
                     <div class="row">
-                        <p>{{$user->id}}</p>
                         <p> {{$user->username}} </p>
                         <p> {{$user->email}} </p>
                         <p> {{$user->phone_number}} </p>
                         <p> {{$user->is_active}} </p>
-                        <p><a href="admin/users/{{$user->id}}"><i class="fa fa-edit"></i></a> </p>
+                        <p><a href="/admin/user/{{$user->id}}"><i class="fa fa-edit"></i></a> </p>
                     </div>
                 @endforeach
             @endisset

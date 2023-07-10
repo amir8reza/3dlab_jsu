@@ -11,6 +11,7 @@ section
     margin: 20px auto;
     padding-bottom: 20px;
     overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 section .header-row
@@ -23,7 +24,8 @@ section .header-row
 }
 
 .header-row p {
-    margin: 10px auto;
+    width: 320px;
+    margin-right: 20px;
 }
 
 .header-row p:first-of-type
@@ -38,8 +40,30 @@ section .row
     border-bottom: 1px solid white;
 }
 
+#new{
+    margin-right:600px;
+    width: 200px;
+    height: 50px;
+    font-family: shabnam;
+    background-color: #0a53be;
+    padding: 10px;
+    border: 1px solid #0a53be;
+    border-radius: 10px;
+}
+
+#new a{
+    color: white;
+    text-decoration: none;
+}
+
 .row p {
-    margin: 10px auto;
+    width: 320px;
+    margin-right: 20px;
+}
+
+.row a{
+    text-decoration: none;
+    color: #997404;
 }
 
 .row p:first-of-type {

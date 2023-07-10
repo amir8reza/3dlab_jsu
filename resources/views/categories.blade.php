@@ -39,8 +39,6 @@
                             </div>
                             <div class="card-text">
                                 <p>  {{$model->title}} </p>
-                                <img class="like-icon" src="{{asset('images/icons/heart.png')}}" alt="like-icon.png">
-                                <span class="like-number"> 5 </span>
                                 <img class="price-icon" src="{{asset('images/icons/coin.png')}}" alt="price-icon.png">
                                 <span class="price-number"> 350 </span>
                             </div>

@@ -21,6 +21,7 @@
                     <span id="model-date"> آخرین تغییر : {{ $model->updated_at  }}</span> <br>
                     <span id="model-price"> قیمت : {{ $model->price  }}</span>
                     <img class="price-icon" src="{{asset('images/icons/coin.png')}}" alt="price-icon.png"> <br>
+                    <span id="model-price"> امتیاز کاربران : {{ $rating  }}</span>
                     @if($user['id'] != \Illuminate\Support\Facades\Auth::id())
                         @if($owned)
                             <button class="model-buy"> <i class="fa fa-solid fa-download"></i> <a href="/models/download/{{$model->slug}}"> دانلود فایل   </a> </button>

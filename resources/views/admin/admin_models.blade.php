@@ -14,7 +14,7 @@
                 <p> عنوان </p>
                 <p> slug </p>
                 <p> طراح </p>
-                <p> آخرین ویرایش </p>
+                <p> فعال/غیرفعال </p>
                 <p> ویرایش </p>
             </div>
 
@@ -25,8 +25,8 @@
                         <p> {{$model->title}} </p>
                         <p> {{$model->slug}} </p>
                         <p> {{$model->user->username}} </p>
-                        <p> {{$model->updated_at}} </p>
-                        <p><a href="admin/models/{{$model->id}}"><i class="fa fa-edit"></i></a> </p>
+                        <p> {{$model->is_active}} </p>
+                        <p><a href="/admin/model/{{$model->id}}"><i class="fa fa-edit"></i></a> </p>
                     </div>
                 @endforeach
             @endisset

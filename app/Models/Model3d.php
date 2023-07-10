@@ -9,7 +9,7 @@ class Model3d extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'slug', 'price', 'file_format', 'file', 'creator_id', 'description', 'is_deleted'];
+    protected $fillable = ['title', 'slug', 'price', 'file_format', 'file', 'creator_id', 'description', 'is_active'];
 
     public function user(){
 

@@ -30,7 +30,7 @@
                         @else
                             <p> در انتظار </p>
                         @endif
-                        <p><a href="admin/users/{{$sale->id}}"><i class="fa fa-edit"></i></a> </p>
+                        <p><a href="/admin/sale/{{$sale->id}}"><i class="fa fa-edit"></i></a> </p>
                     </div>
                 @endforeach
             @endisset

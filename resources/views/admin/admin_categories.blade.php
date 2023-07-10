@@ -26,10 +26,11 @@
                         @else
                             <p> ندارد </p>
                         @endif
-                        <p><a href="admin/users/{{$category->id}}"><i class="fa fa-edit"></i></a> </p>
+                        <p><a href="/admin/categories/{{$category->id}}"><i class="fa fa-edit"></i></a> </p>
                     </div>
                 @endforeach
             @endisset
         </div>
     </section>
+    <button id="new"> <a href="/admin/category/new"> دسته بندی جدید </a> </button>
 @endsection

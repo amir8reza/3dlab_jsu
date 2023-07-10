@@ -20,7 +20,7 @@
                         @foreach($messages as $message)
                             @if ($message->from == $from_user['id'])
                                 <div class="from-chats">
-                                    <img src="asset('images/profile-pics/profile1.png')}}" alt="from-image">
+                                    <img src="{{asset('images/profile-pics/profile1.png')}}" alt="from-image">
                                     <div class="from-text">
                                         <p> {{$message->text}} </p>
                                     </div>
@@ -32,7 +32,7 @@
                                     <div class="to-text">
                                         <p> {{$message->text}} </p>
                                     </div>
-                                    <img src="asset('images/profile-pics/profile1.png')}}" alt="to-image">
+                                    <img src="{{asset('images/profile-pics/profile1.png')}}" alt="to-image">
                                 </div>
                                 <h5 class="to-timestamp"> 09:47 PM </h5>
                             @endif

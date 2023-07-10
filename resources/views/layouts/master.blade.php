@@ -29,8 +29,8 @@
                 <span class="price-number"> {{ \Illuminate\Support\Facades\Auth::user()->wallet }} </span>
             @endauth
             @guest
-                <button id="profile-btn"> <a href="login"> پنل کاربری </a></button>
-                <button id="signup-btn"> <a href="register"> عضویت  </a> </button>
+                <button id="profile-btn"> <a href="/profile"> پنل کاربری </a></button>
+                <button id="signup-btn"> <a href="/register"> عضویت  </a> </button>
             @endguest
             <a href="{{route('index')}}" id="logo"> 3DLAB </a>
         </div>

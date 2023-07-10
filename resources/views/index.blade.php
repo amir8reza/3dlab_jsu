@@ -8,8 +8,7 @@
             <div class="container">
                 <div class="header-text">
                     <h1> 3DLAB </h1>
-                    <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است،
-                        چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که </p>
+                    <p> وبسایت خرید و فروش مدل های سه بعدی مخصوص بازی و انیمیشن سازی </p>
                 </div>
             </div>
         </div>
@@ -19,27 +18,57 @@
 @section('main-section')
     <section>
         <div class="container">
-            <h1> جدیدترین ها </h1>
-            <div class="row">
+
                 @isset($new_models)
+                <h1> جدیدترین ها </h1>
+                <div class="row">
                     @foreach($new_models as $new_model)
-                        <div class="card">
+                    <div class="card">
                             <div class="card-image">
                                 <a href="models/{{$new_model->slug}}"> <img src="{{asset('storage/'.$new_model->images['image'])}}" alt="model.png"> </a>
                             </div>
                             <div class="card-text">
                                 <p>  {{$new_model->title}} </p>
-                                <img class="like-icon" src="{{asset('images/icons/heart.png')}}" alt="like-icon.png">
-                                <span class="like-number"> 5 </span>
                                 <img class="price-icon" src="{{asset('images/icons/coin.png')}}" alt="price-icon.png">
-                                <span class="price-number"> 350 </span>
+                                <span class="price-number"> {{$new_model->price}} </span>
                             </div>
                         </div>
                     @endforeach
+                </div>
+                <h1> پایین ترین قیمت </h1>
+                    <div class="row">
+                        @foreach($lowest_prices as $lowest_price)
+                            <div class="card">
+                                <div class="card-image">
+                                    <a href="models/{{$lowest_price->slug}}"> <img src="{{asset('storage/'.$lowest_price->images['image'])}}" alt="model.png"> </a>
+                                </div>
+                                <div class="card-text">
+                                    <p>  {{$lowest_price->title}} </p>
+                                    <img class="price-icon" src="{{asset('images/icons/coin.png')}}" alt="price-icon.png">
+                                    <span class="price-number"> {{$lowest_price->price}} </span>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                <h1> بالاترین ترین قیمت </h1>
+                <div class="row">
+                    @foreach($highest_prices as $highest_price)
+                        <div class="card">
+                            <div class="card-image">
+                                <a href="models/{{$highest_price->slug}}"> <img src="{{asset('storage/'.$highest_price->images['image'])}}" alt="model.png"> </a>
+                            </div>
+                            <div class="card-text">
+                                <p>  {{$highest_price->title}} </p>
+                                <img class="price-icon" src="{{asset('images/icons/coin.png')}}" alt="price-icon.png">
+                                <span class="price-number"> {{$highest_price->price}} </span>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
                 @else
                     مدلی در دیتابیس نیست
                 @endisset
-            </div>
+
         </div>
     </section>
 @endsection

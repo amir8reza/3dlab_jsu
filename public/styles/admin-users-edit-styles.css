@@ -1,0 +1,65 @@
+header
+{
+    height: 100px;
+}
+
+section
+{
+    height: auto;
+    background-color: #1a1d20;
+    width: 80%;
+    margin: 20px auto;
+    padding-bottom: 20px;
+}
+
+form{
+    margin-top: 50px;
+    width: 80%;
+    height: auto;
+}
+
+form input{
+    margin-top: 10px;
+    width: 90%;
+    height: 20px;
+    font-family: shabnam;
+    border: 1px solid white;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+form textarea{
+    margin-top: 10px;
+    width: 90%;
+    height: 100px;
+    font-family: shabnam;
+    border: 1px solid white;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+form input[type=checkbox]{
+    width: 20px !important;
+    height: 10px;
+}
+
+form label{
+    width: 90%;
+}
+
+form button{
+    margin-top: 100px;
+    width: 200px;
+    height: 50px;
+    background-color: #0a53be;
+    font-family: shabnam;
+    color: white;
+    border-radius: 8px;
+    border: 1px solid #0a53be;
+    margin-right: 270px;
+}
+
+form button:hover{
+    cursor: pointer;
+    background-color: #0a58ca;
+}
