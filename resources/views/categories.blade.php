@@ -25,7 +25,7 @@
             <div class="row">
                 <form class="search-bar-form" action="/categories" method="post"> @csrf
                     <h1> جستجو </h1>
-                    <input type="text" name="search_bar_text" id="search-bar">
+                    <input style="font-size:16px;font-family:shabnam" type="text" name="search_bar_text" id="search-bar">
                     <button type="submit"> جستجو </button>
                 </form>
             </div>

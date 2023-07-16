@@ -217,9 +217,12 @@ class ModelController extends Controller
     {
 
         $model = Model3d::findOrFail($request['id']);
-        
+
         if ($model->creator_id == Auth::id()) {
-            if (Sale::where('model3d_id', '=', $model['id'])->exist())
+
+            Comment::where('model3d_id', '=',$model['id'])->delete();
+
+            if (Sale::where('model3d_id', '=', $model['id'])->exists())
             {
                 $model->update([
                     'is_active' => false
@@ -255,6 +258,7 @@ class ModelController extends Controller
 
     public function categories_view()
     {
+        Category::where('parent_id', '=', null)->get();
         return view('categories');
     }
     public function sub_category_view(Request $request)

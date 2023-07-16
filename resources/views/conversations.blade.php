@@ -18,7 +18,7 @@
                             <p> از طرف : {{$conversation['username']}}
                             </p>
                             <button><a href="/chat/@if($user['id']==$conversation['first_user']){{$conversation['second_user']}}@else{{$conversation['first_user']}}
-                            @endif"> نمایش </a> </button>
+                            @endif" style="color:white;text-decoration:none;font-size:18px"> نمایش </a> </button>
                         </div>
 
                     @endforeach

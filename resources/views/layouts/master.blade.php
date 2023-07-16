@@ -18,13 +18,13 @@
     <nav>
         <div class="top">
             @auth
+                <form method="post" action="/logout"> @csrf
+                    <button type="submit" id="signup-btn"> <a> <i class="fa fa-solid fa-sign-out"></i> خارج شدن </a> </button>
+                </form>
                 <button id="profile-btn"> <a href="/profile"> پنل کاربری </a></button>
                 @if(\Illuminate\Support\Facades\Auth::user()->role=='admin')
                     <button id="profile-btn"> <a href="/admin"> پنل مدیریت </a></button>
                 @endif
-                <form method="post" action="/logout"> @csrf
-                    <button type="submit" id="signup-btn"> <a> خارج شدن </a> </button>
-                </form>
                 <img class="price-icon" src="{{ asset('images/icons/coin.png') }}" alt="price-icon.png">
                 <span class="price-number"> {{ \Illuminate\Support\Facades\Auth::user()->wallet }} </span>
             @endauth
@@ -39,11 +39,11 @@
                 @auth
                     <li><a href="{{route('userCart')}}"> <i class="fa fa-solid fa-shopping-cart"></i> سبد خرید </a></li>
                     <li><a href="/profile/edit"> ویرایش پروفایل </a></li>
-                    <li><a href="{{route('buyCoin')}}"> افزایش اعتبار </a></li>
+                    <li><a href="{{route('buyCoin')}}"> <i class="fa fa-solid fa-coin"></i> افزایش اعتبار </a></li>
                 @endauth
                 <li><a href="{{route('categories')}}"> دسته بندی </a></li>
                 <li><a href="{{route('aboutUs')}}">درباره ما</a></li>
-                <li><a href="{{route('index')}}"> خانه </a></li>
+                <li><a href="{{route('index')}}"> <i class="fa fa-solid fa-home-lg"></i> </a></li>
             </ul>
         </div>
     </nav>

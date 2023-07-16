@@ -25,7 +25,7 @@
                                         <p> {{$message->text}} </p>
                                     </div>
                                 </div>
-                                <h5 class="from-timestamp"> 09:47 PM </h5>
+                                <h5 class="from-timestamp">{{$message->created_at->format('H:i')}} </h5>
                             @else
                                 <div class="to-chats">
 
@@ -34,7 +34,7 @@
                                     </div>
                                     <img src="{{asset('images/profile-pics/profile1.png')}}" alt="to-image">
                                 </div>
-                                <h5 class="to-timestamp"> 09:47 PM </h5>
+                                <h5 class="to-timestamp">{{$message->created_at->format('H:i')}} </h5>
                             @endif
                         @endforeach
                     @else

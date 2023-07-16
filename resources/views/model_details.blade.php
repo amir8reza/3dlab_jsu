@@ -37,6 +37,7 @@
                         <button class="model-buy"> <i class="fa fa-solid fa-edit"></i> <a href="/models/edit/{{$model->id}}"> ویرایش محصول </a> </button>
                     @endif
                     <div class="reviews">
+                        @if($model->is_active)
                         <h3 id="comment-title"> نظرات </h3>
 
                         @isset($comments)
@@ -71,9 +72,8 @@
                                 <option value="5" selected> 5 </option>
                             </select>
                             <label for="rate"> امتیاز شما </label>
-
                         </form>
-
+                        @endif
                     </div>
                 </div>
             </div>

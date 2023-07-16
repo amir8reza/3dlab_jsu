@@ -15,6 +15,7 @@
             <br>
             <label for="parent"> parent </label>
             <select name="parent">
+                <option value=""> ندارد </option>
                 @foreach($categories as $category)
                     <option value="{{$category->id}}"> {{$category->title}} </option>
                 @endforeach
